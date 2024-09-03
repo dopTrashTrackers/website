@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import authService from '../firebaseMethods/auth';
+import authService from '../firebaseMethods/auth.js';
 import { useDispatch } from 'react-redux';
-import { login as storeLogin } from '../store/authSlice';
+import { login as storeLogin } from '../store/authSlice.js';
 import {Footer, Header} from './index.js';
 import { useNavigate } from 'react-router-dom';
 
