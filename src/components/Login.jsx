@@ -27,7 +27,6 @@ const Login = () => {
 
     return ( 
         <div className='w-full flex flex-col'>
-            <Header/>
             <div className="flex w-full items-center justify-center h-screen bg-gradient-to-r from-green-900 via-green-700 to-green-900">
                 <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm bg-opacity-30 backdrop-filter backdrop-blur-lg">
                     <h2 className="text-2xl font-bold mb-4">Login</h2>
@@ -71,7 +70,6 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 };

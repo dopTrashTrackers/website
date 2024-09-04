@@ -8,7 +8,6 @@ function Home() {
   return (
     <>
     <div className='flex flex-col w-full'>
-      <Header/>
       <div className="flex items-center justify-center h-screen bg-gradient-to-r from-green-900 via-green-700 to-green-900">
         <OfficeList/>
       </div>

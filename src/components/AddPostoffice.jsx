@@ -25,7 +25,6 @@ const AddPostoffice = () => {
 
     return (
     <div className='flex flex-col w-full'>
-        <Header/>
         <div className="container mx-auto mt-20 mb-10">
             <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md">
                 <h2 className="text-2xl font-bold mb-6">Register Post Office</h2>
@@ -98,7 +97,6 @@ const AddPostoffice = () => {
                 <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
             </form>
         </div>
-        <Footer/>
     </div>
     );
 };

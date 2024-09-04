@@ -1,0 +1,8 @@
+.loader{
+    animation: rangeen 2s ease-in-out infinite;
+}
+@keyframes rangeen{
+    50% {
+        filter: invert(25%);
+    }
+}

@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux"
 import authService from "./firebaseMethods/auth.js"
 import { login, logout } from "./store/authSlice.js"
 import { Outlet } from "react-router-dom"
+import Header from "./components/Header.jsx"
+import Footer from "./components/Footer.jsx"
 
 
 function App() {
@@ -28,8 +30,10 @@ function App() {
     return <div>Loading...</div>
   }
   return (
-    <div className="min-h-screen flex flex-wrap content-between bg-gray-400 w-full">
+    <div className="min-h-screen bg-gray-400 w-full">
+      <Header/>
       <Outlet/>
+      <Footer/>
     </div>
   )
 }

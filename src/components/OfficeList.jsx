@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import authService from '../firebaseMethods/auth';
 import { Link } from 'react-router-dom';
+import Loader from './Loader';
+import "../styles/global.css";
 
 function OfficeList() {
     const [state, setState] = useState('');
@@ -19,9 +21,9 @@ function OfficeList() {
     },[postOffficeList]);
     
   return (
-    <div className='bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-lg p-3'>
-        <div className='flex gap-2'>
-            <div className="mb-4">
+    <div className='bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-lg p-3 w-3/4 mt-2'>
+        <div className='flex gap-2 w-full mb-4'>
+            <div className="w-1/3">
                 <input
                     type="text"
                     id="state"
@@ -31,7 +33,7 @@ function OfficeList() {
                     onChange={(e) => setState(e.target.value)}
                 />
             </div>
-            <div className="mb-4">
+            <div className="w-1/3">
                 <input
                     type="text"
                     id="district"
@@ -41,7 +43,7 @@ function OfficeList() {
                     onChange={(e) => setDistrict(e.target.value)}
                 />
             </div>
-            <div className="mb-4">
+            <div className="w-1/3">
                 <input
                     type="text"
                     id="pincode"
@@ -52,8 +54,8 @@ function OfficeList() {
                 />
             </div>
         </div>
-        <div className='w-full'>
-            <div className='flex justify-between p-2 bg-gray-100 rounded-lg border-gray-300 mb-1'>
+        <div className='w-full overflow-y-scroll no-scrollbar relative' style={{maxHeight:"600px"}}>
+            <div className='flex justify-between p-2 bg-gray-100 rounded-lg border-gray-300 mb-1 sticky top-0 z-10'>
                 <div className='w-1/4 font-medium'>Name</div>
                 <div className='flex gap-2 w-1/2'>
                     <div className='w-1/3 font-medium'>Pincode</div>
@@ -61,6 +63,21 @@ function OfficeList() {
                     <div className='w-1/3 font-medium'>State</div>
                 </div>
             </div>
+            {
+                Object.keys(postOffficeList).length === 0 &&
+                (
+                    <>
+                    <Loader height='40px'/>
+                    <Loader height='40px'/>
+                    <Loader height='40px'/>
+                    <Loader height='40px'/>
+                    <Loader height='40px'/>
+                    <Loader height='40px'/>
+                    <Loader height='40px'/>
+                    <Loader height='40px'/>
+                    </>
+                )
+            }
             {
                 Object.keys(postOffficeList).map((postOfficeKey) => {
                     const postOffice = postOffficeList[postOfficeKey];

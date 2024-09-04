@@ -7,7 +7,7 @@ import GarbageDetectionTable from './DetectionTimeTable';
 
 const DashBoard = () => {
   return (
-    <div className='flex flex-col gap-4 h-screen bg-teal-900 text-gray-100 overflow-x-hidden overflow-y-scroll w-full'>
+    <div className='flex flex-col gap-4 h-screen bg-teal-900 text-gray-100 w-full'>
       {/* Background */}
       <div className='fixed inset-0 z-0'>
         <div className='absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800 to-teal-900 opacity-80' />
@@ -25,7 +25,7 @@ const DashBoard = () => {
         <GarbageDetectionMap className='flex-1 h-[360px]' />
         <CleanlinessComplianceChart className='flex-1 h-[360px]' />
       </div>
-      <div className='flex'>
+      <div className='flex p-4'>
         <GarbageDetectionTable/>
       </div>
     </div>
