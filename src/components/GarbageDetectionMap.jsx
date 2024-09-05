@@ -27,12 +27,13 @@ const garbageDetectionData = [
 const GarbageDetectionMap = () => {
   return (
     <motion.div
-      className='bg-teal-950 h-min w-3/6 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700'
+      className=' h-min w-3/4 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
+      style={{backgroundColor:'#F5EDED'}}
     >
-      <h2 className='text-xl font-semibold text-gray-100 mb-4'>Geospatial Map of Garbage Detections</h2>
+      <h2 className='text-xl font-semibold text-black mb-4'>Geospatial Map of Garbage Detections</h2>
       <div className='h-[500px] rounded-lg overflow-hidden'>
         <MapContainer center={[20.5937, 78.9629]} zoom={5} style={{ height: '100%', width: '100%' }}>
           <TileLayer

@@ -5,6 +5,7 @@ import { AddPostOffice } from './index.js'
 import CardSlider from './CardSlider.jsx'
 import { AccordionCustomStyles } from './Accordion.jsx'
 import Logos from './Logos.jsx'
+import GarbageDetectionMap from './GarbageDetectionMap.jsx'
 
 function Home() {
   return (
@@ -13,7 +14,9 @@ function Home() {
       <Logos/>  
       <CardSlider/>
       <OfficeList/>
+      <GarbageDetectionMap/>
       <AccordionCustomStyles/>
+      
     </div>
     {/* <AddPostOffice/> */}
     </>

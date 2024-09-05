@@ -30,18 +30,19 @@ const GarbageDetectionTable = () => {
 
   return (
     <motion.div
-      className='bg-teal-950 h-min w-3/6 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700'
+      className=' h-min w-3/6 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
+       style={{backgroundColor:'#F5EDED'}}
     >
       <div className='flex justify-between items-center mb-6'>
-        <h2 className='text-xl font-semibold text-gray-100'>Garbage Detection Records</h2>
+        <h2 className='text-xl font-semibold text-black'>Garbage Detection Records</h2>
         <div className='relative'>
           <input
             type='text'
             placeholder='Search records...'
-            className='bg-gray-700 text-white placeholder-gray-400 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500'
+            className='bg-gray-200 text-black placeholder-gray-600 outline-double rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-700'
             value={searchTerm}
             onChange={handleSearch}
           />
@@ -53,22 +54,22 @@ const GarbageDetectionTable = () => {
         <table className='min-w-full divide-y divide-gray-700'>
           <thead>
             <tr>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-md font-medium text-blue-900 uppercase tracking-wider'>
                 Place of Post Office
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-md font-medium text-blue-900 uppercase tracking-wider'>
                 Type of Garbage
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left  font-medium text-blue-900 text-md uppercase tracking-wider'>
                 Time of Garbage Detection
               </th>
-              <th className='px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider'>
+              <th className='px-6 py-3 text-left text-md font-medium text-blue-900 uppercase tracking-wider'>
                 Actions
               </th>
             </tr>
           </thead>
 
-          <tbody className='divide-y divide-gray-700'>
+          <tbody className='divide-y divide-black'>
             {filteredData.map((record) => (
               <motion.tr
                 key={record.id}
@@ -77,17 +78,17 @@ const GarbageDetectionTable = () => {
                 transition={{ duration: 0.3 }}
               >
                 <td className='px-6 py-4 whitespace-nowrap'>
-                  <div className='text-sm font-medium text-gray-100'>{record.place}</div>
+                  <div className='text-sm font-medium text-black'>{record.place}</div>
                 </td>
                 <td className='px-6 py-4 whitespace-nowrap'>
-                  <div className='text-sm text-gray-300'>{record.type}</div>
+                  <div className='text-sm text-black'>{record.type}</div>
                 </td>
                 <td className='px-6 py-4 whitespace-nowrap'>
-                  <div className='text-sm text-gray-300'>
+                  <div className='text-sm text-black'>
                     {new Date(record.time).toLocaleString()}
                   </div>
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-300'>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-black'>
                   <button className='text-indigo-400 hover:text-indigo-300 mr-2'>Edit</button>
                   <button className='text-red-400 hover:text-red-300'>Delete</button>
                 </td>
