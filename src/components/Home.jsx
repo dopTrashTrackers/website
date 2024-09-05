@@ -13,16 +13,8 @@ function Home() {
       <Logos/>  
       <CardSlider/>
       <OfficeList/>
+      <AccordionCustomStyles/>
     </div>
-    <div className='w-3/4 ml-40'>
-       <div className='p-4'>
-         <h2 style={{ fontSize: '2.5rem', fontFamily: 'Arial, sans-serif', fontWeight: 'bold', color: '#61C0BF' }}>
-          Frequently Asked Questions
-       </h2>
-
-     <AccordionCustomStyles/>
-     </div>
-   </div>
     {/* <AddPostOffice/> */}
     </>
   )

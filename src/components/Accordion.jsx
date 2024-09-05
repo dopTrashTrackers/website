@@ -11,7 +11,10 @@ export function AccordionCustomStyles() {
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
  
   return (
-    <>
+    <div className='w-3/4 p-4'>
+      <h2 style={{ fontSize: '2.5rem', fontFamily: 'Arial, sans-serif', fontWeight: 'bold', color: '#61C0BF' }}>
+        Frequently Asked Questions
+      </h2>
       <Accordion open={open === 1} className="mb-2 rounded-lg border border-blue-gray-100 px-4 " style={{backgroundColor:'#BBDED6'}}>
         <AccordionHeader
           onClick={() => handleOpen(1)}
@@ -56,6 +59,6 @@ export function AccordionCustomStyles() {
         In the event of a false alert (when no garbage is present), you can report it by submitting an incident report in the website's support section. This helps improve the system&apos;s accuracy.
         </AccordionBody>
       </Accordion>
-    </>
+    </div>
   );
 }

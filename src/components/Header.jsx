@@ -23,12 +23,12 @@ function Header() {
   }
 
   return (
-    <header className="bg-white shadow w-full backdrop-blur-3xl opacity-95 sticky top-0 z-50" style={{backgroundColor:"#61C0BF"}}>
+    <header className="bg-white/10 shadow w-full sticky top-0 z-50 backdrop-blur-xl">
       <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           <div className="hidden w-full text-gray-600 md:flex md:items-center">
             <Link to='/' className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full">Home</Link>
-            <Link to='/faq' className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full">FAQ</Link>
+            <Link to='#faq' className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full">FAQ</Link>
             <Link to='/contact' className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full">Contact</Link>
           </div>
           <Link to='/' className="w-full text-gray-700 flex items-center justify-center md:text-center text-2xl font-semibold">
