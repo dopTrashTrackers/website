@@ -7,7 +7,7 @@ import CardSlider from './CardSlider.jsx'
 function Home() {
   return (
     <>
-    <div className='flex flex-col w-full items-center justify-center min-h-screen gap-10'>
+    <div className='flex flex-col w-full items-center justify-center min-h-screen gap-10 mb-10'>
       <CardSlider/>
       <OfficeList/>
     </div>
