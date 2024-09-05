@@ -11,7 +11,7 @@ export function AccordionCustomStyles() {
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
  
   return (
-    <div className='w-3/4 p-4'>
+    <div id="faq" className='w-3/4 p-4'>
       <h2 style={{ fontSize: '2.5rem', fontFamily: 'Arial, sans-serif', fontWeight: 'bold', color: '#61C0BF' }}>
         Frequently Asked Questions
       </h2>
