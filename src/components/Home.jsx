@@ -3,7 +3,7 @@ import {Header, Footer} from './index.js'
 import OfficeList from './OfficeList.jsx'
 import { AddPostOffice } from './index.js'
 import CardSlider from './CardSlider.jsx'
-
+import { AccordionCustomStyles } from './Accordion.jsx'
 function Home() {
   return (
     <>
@@ -11,6 +11,15 @@ function Home() {
       <CardSlider/>
       <OfficeList/>
     </div>
+    <div className='w-3/4 ml-40'>
+       <div className='p-4'>
+         <h2 style={{ fontSize: '2.5rem', fontFamily: 'Arial, sans-serif', fontWeight: 'bold', color: '#61C0BF' }}>
+          Frequently Asked Questions
+       </h2>
+
+     <AccordionCustomStyles/>
+     </div>
+   </div>
     {/* <AddPostOffice/> */}
     </>
   )
