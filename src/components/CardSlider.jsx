@@ -11,36 +11,36 @@ const CardSlider = () => {
             </div>
       
             <div className="mb-[50px]">
-              <Marquee speed={100} delay={0}>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../NoPlastic.png" alt="" />
+              <Marquee speed={100} delay={0} className='p-4'>
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-110" src="../../NoPlastic.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../SaveWater.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-110" src="../../SaveWater.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../SaveEnergy.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-125" src="../../SaveEnergy.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../SustainableFood.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-110" src="../../SustainableFood.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../EcoFriendly.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-110" src="../../EcoFriendly.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../ReduceWaste.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-110" src="../../ReduceWaste.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../ReduceEwaste.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-125" src="../../ReduceEWaste.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../Nosingleuseplastic.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-110" src="../../Nosingleuseplastic.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../COP27.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-110" src="../../COP27.png" alt="" />
                 </div>
-                <div className="mx-8">
-                  <img className="w-[150%] filter brightness-15 shadow-lg" src="../../AdoptHealthyLifestyle.png" alt="" />
+                <div className="mx-8 relative rounded-lg shadow-lg overflow-hidden" style={{height:"180px"}}>
+                  <img className="w-[150%] filter brightness-15 scale-110" src="../../AdoptHealthyLifestyle.png" alt="" />
                 </div>
               </Marquee>
             </div>

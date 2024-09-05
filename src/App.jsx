@@ -30,7 +30,7 @@ function App() {
     return <div>Loading...</div>
   }
   return (
-    <div className="min-h-screen bg-gray-400 w-full">
+    <div className="min-h-screen bg-white w-full">
       <Header/>
       <Outlet/>
       <Footer/>
