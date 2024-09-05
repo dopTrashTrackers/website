@@ -7,11 +7,9 @@ import CardSlider from './CardSlider.jsx'
 function Home() {
   return (
     <>
-    <div className='flex flex-col w-full'>
-      <div className="flex items-center justify-center h-screen bg-gradient-to-r from-green-900 via-green-700 to-green-900">
-        <OfficeList/>
-      </div>
+    <div className='flex flex-col w-full items-center justify-center min-h-screen gap-10'>
       <CardSlider/>
+      <OfficeList/>
     </div>
     {/* <AddPostOffice/> */}
     </>

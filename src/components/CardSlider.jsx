@@ -3,7 +3,7 @@ import Marquee from 'react-fast-marquee'
 
 const CardSlider = () => {
         return (
-          <div className="mt-[50px] text-center bg-white w-3/4 ml-44 rounded-md">
+          <div className="mt-[50px] text-center bg-white w-3/4 rounded-md">
             <div className="mb-[50px]">
               <h1 className="text-6xl font-serif bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
                 <i>LiFE practices</i>
