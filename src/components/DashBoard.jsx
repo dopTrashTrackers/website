@@ -4,7 +4,7 @@ import GarbageTypeBarChart from './CategoryChart';
 import GarbageDetectionMap from './GarbageDetectionMap';
 import CleanlinessComplianceChart from './CleanlinessComplianceChart';
 import GarbageDetectionTable from './DetectionTimeTable';
-
+import AlertSystem from './Alert';
 const DashBoard = () => {
   return (
     <div className='flex flex-col gap-4 min-h-fit opacity-80 text-black w-full' style={{backgroundColor:'#B4D4FF'}}>
@@ -19,7 +19,7 @@ const DashBoard = () => {
         <GarbageDetectionTable className='flex-1 h-[360px]' />
         <CleanlinessComplianceChart className='flex-1 h-[360px]' />
       </div>
-      
+      <AlertSystem/>
     </div>
   );
 };
