@@ -23,7 +23,7 @@ function Header() {
   }
 
   return (
-    <header className="bg-white/10 shadow w-full sticky top-0 z-50 backdrop-blur-xl">
+    <header className="bg-white/30 shadow w-full sticky top-0 z-50 backdrop-blur-xl">
       <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           <div className="hidden w-full text-gray-600 md:flex md:items-center">

@@ -1,9 +1,10 @@
 import React from 'react'
 import Marquee from 'react-fast-marquee'
+import "../styles/CardSlider.css"
 
 const CardSlider = () => {
         return (
-          <div className="text-center bg-white w-3/4 rounded-md" >
+          <div id="slider" className="text-center  backdrop:blur-lg w-3/4 rounded-md relative overflow-hidden">
             <div className="mb-[50px]">
               <h1 className="text-6xl font-serif bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
                 <i>LiFE practices</i>

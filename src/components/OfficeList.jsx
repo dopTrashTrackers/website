@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import authService from '../firebaseMethods/auth';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 import "../styles/global.css";
 
@@ -10,6 +10,7 @@ function OfficeList() {
     const [district, setDistrict] = useState('');
     const [pincode, setPincode] = useState('');
     const [postOffficeList, setPostOfficeList] = useState({});
+    const navigate = useNavigate();
     useEffect(() => {
         authService.getData('postOffices').then(
         (data) => {
@@ -20,8 +21,8 @@ function OfficeList() {
         console.log("list",postOffficeList);
     },[postOffficeList]);
     
-  return (
-    <div className='bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-lg p-3 w-3/4 mt-2'>
+return (
+    <div className='bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-lg p-6 w-3/4 mt-2 shadow-lg'>
         <div className='flex gap-2 w-full mb-4'>
             <div className="w-1/3">
                 <input
@@ -54,57 +55,74 @@ function OfficeList() {
                 />
             </div>
         </div>
-        <div className='w-full overflow-y-scroll no-scrollbar relative' style={{maxHeight:"600px"}}>
-            <div className='flex justify-between p-2 bg-gray-100 rounded-lg border-gray-300 mb-1 sticky top-0 z-10'>
-                <div className='w-1/4 font-medium'>Name</div>
-                <div className='flex gap-2 w-1/2'>
-                    <div className='w-1/3 font-medium'>Pincode</div>
-                    <div className='w-1/3 font-medium'>District</div>
-                    <div className='w-1/3 font-medium'>State</div>
-                </div>
+        <div className='w-full overflow-y-scroll no-scrollbar relative rounded-lg' style={{maxHeight:"600px"}}>
+            <table className="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
+                <thead className="text-xs text-gray-900 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" className="px-6 py-3">
+                        Name
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                        Pincode
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                        District
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                        State
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>            
+                    {
+                        Object.keys(postOffficeList).map((postOfficeKey) => {
+                            const postOffice = postOffficeList[postOfficeKey];
+                            return (
+                                (
+                                    (state === '' && district === '' && pincode === '') ||
+                                    (state && postOffice.state.toLowerCase().includes(state.toLowerCase())) ||
+                                    (district && postOffice.district.toLowerCase().includes(district.toLowerCase())) ||
+                                    (pincode && postOffice.pincode.toLowerCase().includes(pincode.toLowerCase()))
+                                )
+                                &&
+                                <tr key={postOffice.key} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700
+                                    hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                                    onClick={() => navigate(`/dashboard/${postOffice.key}`)}
+                                >
+                                    <td className="px-6 py-4">{postOffice.name}</td>
+                                    <td className="px-6 py-4">{postOffice.pincode}</td>
+                                    <td className="px-6 py-4">{postOffice.district}</td>
+                                    <td className="px-6 py-4">{postOffice.state}</td>
+                                </tr>
+                            );
+                        })
+                    }
+                </tbody>
+            </table>
+
+            <div className="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
+                {
+                    Object.keys(postOffficeList).length === 0 &&
+                    (
+                        <>
+                            <Loader height='50px'/>
+                            <Loader height='50px'/>
+                            <Loader height='50px'/>
+                            <Loader height='50px'/>
+                            <Loader height='40px'/>
+                            <Loader height='40px'/>
+                            <Loader height='40px'/>
+                            <Loader height='40px'/>
+                            <Loader height='40px'/>
+                            <Loader height='40px'/>
+                            <Loader height='40px'/>
+                        </>
+                    )
+                }
             </div>
-            {
-                Object.keys(postOffficeList).length === 0 &&
-                (
-                    <>
-                    <Loader height='40px'/>
-                    <Loader height='40px'/>
-                    <Loader height='40px'/>
-                    <Loader height='40px'/>
-                    <Loader height='40px'/>
-                    <Loader height='40px'/>
-                    <Loader height='40px'/>
-                    <Loader height='40px'/>
-                    </>
-                )
-            }
-            {
-                Object.keys(postOffficeList).map((postOfficeKey) => {
-                    const postOffice = postOffficeList[postOfficeKey];
-                    return (
-                        (
-                            (state === '' && district === '' && pincode === '') ||
-                            (state && postOffice.state.toLowerCase().includes(state.toLowerCase())) ||
-                            (district && postOffice.district.toLowerCase().includes(district.toLowerCase())) ||
-                            (pincode && postOffice.pincode.toLowerCase().includes(pincode.toLowerCase()))
-                        )
-                        &&
-                        <Link to={`/dashboard/${postOffice.key}`} key={postOffice.key}>
-                            <div className='flex justify-between p-2 bg-gray-100 rounded-lg border border-gray-300'>
-                                <div className='w-1/4 font-medium'>{postOffice.name}</div>
-                                <div className='flex gap-2 w-1/2'>
-                                    <div className='w-1/3 font-medium'>{postOffice.pincode}</div>
-                                    <div className='w-1/3 font-medium'>{postOffice.district}</div>
-                                    <div className='w-1/3 font-medium'>{postOffice.state}</div>
-                                </div>
-                            </div>
-                        </Link>
-                    );
-                })
-            }
         </div>
     </div>
-  )
+)
 }
 
 export default OfficeList
