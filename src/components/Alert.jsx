@@ -13,17 +13,15 @@ const AlertSystem = () => {
   const form = useRef(); // Using a ref for the form
 
   // Function to handle sending alert
-  const sendAlert = (timestamp) => {
+  const sendAlert = () => {
+    const timestamp = new Date().toISOString();
     console.log(`Alert sent at: ${timestamp}`);
     setAlertSent(true);
-    sendEmail();
+    sendEmail(); // Call sendEmail here
   };
 
-  const sendEmail = (e) => {
-    if(e){
-    e.preventDefault(); // Prevent form submission behavior
-    }
-
+  const sendEmail = () => {
+    // Prevent form submission behavior if form submission is involved
     emailjs
       .sendForm('service_9qvtp58', 'template_wqpnjf4', form.current, {
         publicKey: 'SDDNbHMTZaEETfVR6',
@@ -31,6 +29,7 @@ const AlertSystem = () => {
       .then(
         () => {
           console.log('SUCCESS!');
+          alert('Alert sent successfully!');
         },
         (error) => {
           console.log('FAILED...', error.text);
@@ -38,39 +37,39 @@ const AlertSystem = () => {
       );
   };
 
-  useEffect(() => {
-    // Simulate model running and setting its output
-    const output = runMLModel();
-    setModelOutput(output);
-
-    if (output === true) {
-      const timestamp = new Date().toLocaleString(); // Get the current time
-      sendAlert(timestamp); // Trigger alert with the current time
-    }
-  }, [modelOutput]); // Re-run the effect when `modelOutput` changes
-
   return (
-    <div className="hidden">
-      <form ref={form} onSubmit={sendEmail}>
-        <label>Name</label>
-        {/* Using defaultValue instead of value for static values */}
-        <input type="text" name="user_name" defaultValue="ram" />
+    <>
+      <div className="invisible">
+        <form ref={form} onSubmit={
+          (e) => {
+            e.preventDefault();
+            sendEmail();
+          }
+          }>
+          <label>Name</label>
+          {/* Using defaultValue instead of value for static values */}
+          <input type="text" name="user_name" defaultValue="ram" />
 
-        <label>Email</label>
-        <input type="email" name="user_email" defaultValue="sihbgp2024@gmail.com" />
+          <label>Email</label>
+          <input type="email" name="user_email" defaultValue="sihbgp2024@gmail.com" />
 
-        <label>Message</label>
-        <textarea name="message" defaultValue="test" />
+          <label>Message</label>
+          <textarea name="message" defaultValue="test" />
 
-        <input type="submit" value="Send" />
-      </form>
+          <input type="submit" value="Send" />
+        </form>
+      </div>
 
-      {modelOutput === true && alertSent && (
-        alert("Alert sent successfully!")
-      )}
-    </div>
+      <div>
+        <button
+          onClick={()=>sendEmail()}  
+          className="bg-green-200 text-black w-40 p-2 rounded-lg ml-[625px] mb-8"
+        >
+          Generate Alert !!
+        </button>
+      </div>
+    </>
   );
 };
 
 export default AlertSystem;
-
