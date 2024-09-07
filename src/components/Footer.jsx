@@ -14,11 +14,11 @@ const Footer = () => {
             </div>
           </div> */}
           <div className="footer-row">
-            <div className="footer-column">
+            <div className="footer-column footer-about">
               <div className="footer-about">
                 <h3>About Us</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                We are a dedicated team of tech enthusiasts and cleanliness advocates committed to revolutionizing the way post offices maintain and monitor their cleanliness standards. Our mission is to create a real-time dashboard that empowers post offices to ensure pristine environments, enhancing both customer experience and operational efficiency.
                 </p>
               </div>
             </div>
@@ -36,9 +36,9 @@ const Footer = () => {
             <div className="footer-column">
               <div className="footer-links">
                 <h3>Service Area</h3>
-                <a href="#">Rice Milling Technology Solutions</a>
-                <a href="#">Industrial Power Solutions</a>
-                <a href="#">Static Voltage Stabilizers</a>
+                <a href="#">Clean Vision Solutions</a>
+                <a href="#">Ministy of Communication</a>
+                <a href="#">IIIT Bhagalpur</a>
               </div>
             </div>
             <div className="footer-column">
