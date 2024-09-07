@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import GarbageTimeSeriesChart from './TimeChart';
 import GarbageTypeBarChart from './CategoryChart';
 import GarbageDetectionMap from './GarbageDetectionMap';
 import CleanlinessComplianceChart from './CleanlinessComplianceChart';
 import GarbageDetectionTable from './DetectionTimeTable';
+import { use } from 'framer-motion/client';
 
 const DashBoard = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
-    <div className='flex flex-col gap-4 min-h-fit opacity-80 text-black w-full' style={{backgroundColor:'#B4D4FF'}}>
+    <div id="dashboardTop" className='flex flex-col gap-4 min-h-fit opacity-80 text-black w-full' style={{backgroundColor:'#B4D4FF'}}>
       {/* Top Row */}
       <div className='flex flex-row gap-4 p-4'>
         <GarbageTimeSeriesChart className='flex-1 h-[360px]' />

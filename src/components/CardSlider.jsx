@@ -4,7 +4,7 @@ import "../styles/CardSlider.css"
 
 const CardSlider = () => {
         return (
-          <div id="slider" className="text-center  backdrop:blur-lg w-3/4 rounded-md relative overflow-hidden">
+          <div id="slider" className="text-center w-3/4 rounded-md">
             <div className="mb-[50px]">
               <h1 className="text-6xl font-serif bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
                 <i>LiFE practices</i>
@@ -49,9 +49,4 @@ const CardSlider = () => {
         );
       };
       
-      
-      
-  
-
-
 export default CardSlider

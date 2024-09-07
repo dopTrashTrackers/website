@@ -1,0 +1,150 @@
+.footer-container {
+    background: #ffffff;
+    color: #4c5166;
+    padding: 45px 15px;
+  }
+  
+  .footer {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-content {
+    margin-bottom: 45px;
+  }
+  
+  .newsletter {
+    background: #ffffff;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .newsletter h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+  
+  .newsletter-form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 5px;
+  }
+  
+  .newsletter-input {
+    height: 50px;
+    border: 2px solid #cdcdcd;
+    flex: 1;
+  }
+  
+  .newsletter-btn {
+    height: 50px;
+    padding: 0 20px;
+    background: #ffffff;
+    color: #06965c;
+    border: 2px solid #06965c;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .newsletter-btn:hover {
+    background: #06965c;
+    color: #fff;
+  }
+  
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .footer-column {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .footer-about,
+  .footer-links,
+  .footer-contact {
+    margin-bottom: 30px;
+  }
+  
+  .footer-about h3,
+  .footer-links h3,
+  .footer-contact h3 {
+    margin-bottom: 20px;
+    color: #06965c;
+    font-size: 22px;
+  }
+  
+  .footer-links a,
+  .footer-contact p {
+    margin-bottom: 10px;
+    display: block;
+    color: #4c5166;
+    transition: 0.3s;
+  }
+  
+  .footer-links a:hover,
+  .footer-contact p:hover {
+    font-weight: 400;
+    scale: 0.9;
+    /* or 267% */
+    text-decoration-line: underline;
+  
+    color: #06965c;
+  }
+  
+  .footer-social a {
+    display: inline-block;
+    margin-right: 15px;
+    color: #0085ff;
+  }
+  
+  .footer-social a:hover {
+    color: #dddddd;
+  }
+  
+  .footer-menu {
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .f-menu a {
+    margin: 0 15px;
+    color: #4c5166;
+    text-transform: capitalize;
+  }
+  
+  .f-menu a:hover {
+    color: #4c5166;
+  }
+  
+  .footer-copyright {
+    text-align: center;
+    padding: 30px 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-copyright p {
+    margin: 0;
+  }
+  
+  .footer-copyright a {
+    color: #4c5166;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .footer-copyright a:hover {
+    color: #06965c;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-row {
+      flex-direction: column;
+    }
+  }
+  
