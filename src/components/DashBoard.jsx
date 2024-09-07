@@ -24,7 +24,7 @@ const DashBoard = () => {
         <GarbageDetectionTable className='flex-1 h-[360px]' />
         <CleanlinessComplianceChart className='flex-1 h-[360px]' />
       </div>
-      <AlertSystem/>
+      {/* <AlertSystem/> */}
     </div>
   );
 };

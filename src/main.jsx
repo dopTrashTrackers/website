@@ -14,11 +14,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />
+        element: <Login />
       },
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/home',
+        element: <Home />
       },
       {
         path: '/signup',
@@ -33,8 +37,8 @@ const router = createBrowserRouter([
         element: <FAQ />
       },
       {
-        path: "/contact",
-        element: <Contact />
+        path: "/register",
+        element: <AddPostOffice/>
       },
       {
         path: '/addPostOffice',

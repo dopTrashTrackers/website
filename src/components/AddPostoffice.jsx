@@ -9,6 +9,8 @@ const AddPostoffice = () => {
     const [district, setDistrict] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,7 +20,9 @@ const AddPostoffice = () => {
             address,
             district,
             city,
-            state
+            state,
+            email,
+            phone,
         };
         authService.putData('postOffices', data);
     };
@@ -90,6 +94,29 @@ const AddPostoffice = () => {
                         id="state"
                         value={state}
                         onChange={(e) => setState(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="state" className="block text-gray-700 font-bold mb-2">Email</label>
+                    <input
+                        type="email"
+                        id="state"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="state" className="block text-gray-700 font-bold mb-2">Phone Number</label>
+                    <input
+                        type="number"
+                        maxLength={10}
+                        id="state"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         required
                     />
