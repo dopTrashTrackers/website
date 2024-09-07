@@ -4,7 +4,7 @@ import authService from '../firebaseMethods/auth.js';
 const AddPostoffice = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
-    });
+    },[]);
 
     const [pincode, setPincode] = useState('');
     const [name, setName] = useState('');
@@ -28,6 +28,15 @@ const AddPostoffice = () => {
             phone,
         };
         authService.putData('postOffices', data);
+
+        setPincode('');
+        setName('');
+        setAddress('');
+        setDistrict('');
+        setCity('');
+        setState('');
+        setEmail('');
+        setPhone('');
     };
 
     return (
