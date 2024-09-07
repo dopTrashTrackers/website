@@ -7,6 +7,7 @@ import { AccordionCustomStyles } from './Accordion.jsx'
 import Logos from './Logos.jsx'
 import GarbageDetectionMap from './GarbageDetectionMap.jsx'
 
+
 function Home() {
   return (
     <>

@@ -4,6 +4,7 @@ import GarbageTypeBarChart from './CategoryChart';
 import GarbageDetectionMap from './GarbageDetectionMap';
 import CleanlinessComplianceChart from './CleanlinessComplianceChart';
 import GarbageDetectionTable from './DetectionTimeTable';
+import AlertSystem from './Alert';
 import { use } from 'framer-motion/client';
 
 const DashBoard = () => {
@@ -23,7 +24,7 @@ const DashBoard = () => {
         <GarbageDetectionTable className='flex-1 h-[360px]' />
         <CleanlinessComplianceChart className='flex-1 h-[360px]' />
       </div>
-      
+      <AlertSystem/>
     </div>
   );
 };
