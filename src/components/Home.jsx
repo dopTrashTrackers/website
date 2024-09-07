@@ -1,7 +1,5 @@
 import React from 'react'
-import {Header, Footer} from './index.js'
 import OfficeList from './OfficeList.jsx'
-import { AddPostOffice } from './index.js'
 import CardSlider from './CardSlider.jsx'
 import { AccordionCustomStyles } from './Accordion.jsx'
 import Logos from './Logos.jsx'

@@ -39,7 +39,7 @@ const AlertSystem = () => {
 
   return (
     <>
-      <div className="invisible">
+      <div className="invisible h-1">
         <form ref={form} onSubmit={
           (e) => {
             e.preventDefault();
@@ -60,7 +60,7 @@ const AlertSystem = () => {
         </form>
       </div>
 
-      <div>
+      <div className='-ml-16'>
         <button
           onClick={()=>sendEmail()}  
           className="bg-green-200 text-black w-40 p-2 rounded-lg ml-[625px] mb-12 hover:bg-green-700"

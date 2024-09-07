@@ -24,18 +24,18 @@ function Header() {
 
   return (
     <header className="bg-white/30 shadow w-full sticky top-0 z-50 backdrop-blur-xl">
-      <div className="container mx-auto px-6 py-3">
-        <div className="flex items-center justify-between">
-          <div className="hidden w-full text-gray-600 md:flex md:items-center">
-            <Link to='/home' className="inline-block px-6 py-2 duration-200 hover:bg-blue-50 rounded-full cursor-pointer">Home</Link>
-            <div className="inline-block px-6 py-2 duration-200 hover:bg-blue-50 rounded-full cursor-pointer"
+      <div className="container px-0 py-3">
+        <div className="flex items-center w-full justify-between">
+          <div className="hidden w-full text-lg text-gray-600 px-24 md:flex md:items-center gap-1">
+            <Link to='/home' className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer">Home</Link>
+            <div className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer"
             onClick={() => {
               navigate('/home');
               const anchor = document.querySelector('#faq');
               anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }}
             >FAQ</div>
-            <Link to='/register' className="inline-block px-6 py-2 duration-200 hover:bg-blue-50 rounded-full cursor-pointer">Register</Link>
+            <Link to='/register' className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer">Register</Link>
           </div>
           <Link to='/home' className="w-full text-gray-700 flex items-center justify-center md:text-center text-2xl font-semibold cursor-pointer">
             <img src="../../India2.png" alt="" className='h-10' />
