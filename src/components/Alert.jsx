@@ -63,7 +63,7 @@ const AlertSystem = () => {
       <div>
         <button
           onClick={()=>sendEmail()}  
-          className="bg-green-200 text-black w-40 p-2 rounded-lg ml-[625px] mb-8"
+          className="bg-green-200 text-black w-40 p-2 rounded-lg ml-[625px] mb-12 hover:bg-green-700"
         >
           Generate Alert !!
         </button>
