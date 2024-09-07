@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import {Footer, Header} from './index.js';
+import React, { useState, useEffect } from 'react';
 import authService from '../firebaseMethods/auth.js';
 
 const AddPostoffice = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const [pincode, setPincode] = useState('');
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');

@@ -30,6 +30,7 @@ function Header() {
             <Link to='/home' className="inline-block px-6 py-2 duration-200 hover:bg-blue-50 rounded-full cursor-pointer">Home</Link>
             <div className="inline-block px-6 py-2 duration-200 hover:bg-blue-50 rounded-full cursor-pointer"
             onClick={() => {
+              navigate('/home');
               const anchor = document.querySelector('#faq');
               anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }}
