@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 
 const cleanlinessData = [
-  { name: 'Compliant', value: 80 },  
-  { name: 'Non-Compliant', value: 20 }, 
+  { name: 'Compliant', value: 160 },  
+  { name: 'Non-Compliant', value: 40 }, 
 ];
 
 const COLORS = ['#7c3aed', '#db2777'];
 const CleanlinessComplianceChart = () => {
+  const ref = useRef(null)
+  const inView = useInView(ref)
   return (
     <motion.div
+      ref={ref}
       className=' h-6/6 w-3/6 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -19,8 +22,8 @@ const CleanlinessComplianceChart = () => {
       style={{backgroundColor:'#F5EDED'}}
     >
       <h2 className='text-xl font-semibold text-black mb-10'>Post Office Cleanliness Compliance</h2>
-      <div className='h-[360px]'>
-        <ResponsiveContainer width='100%' height='100%'>
+      <div className='h-[360px] -ml-5'>
+        {inView && <ResponsiveContainer width='100%' height='100%'>
           <PieChart>
             <Pie
               data={cleanlinessData}
@@ -29,6 +32,7 @@ const CleanlinessComplianceChart = () => {
               outerRadius={160}
               fill="#8884d8"
               dataKey="value"
+              innerRadius={80}
               
               label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
             >
@@ -40,6 +44,7 @@ const CleanlinessComplianceChart = () => {
               contentStyle={{
                 backgroundColor: "rgb(100, 130, 173)",
                 borderColor: "#4B5563",
+                borderRadius: "0.5rem",
               }}
               itemStyle={{ color: "#000000" }}
             />
@@ -51,7 +56,7 @@ const CleanlinessComplianceChart = () => {
               wrapperStyle={{ color: "#e9d5ff" }}
             />
           </PieChart>
-        </ResponsiveContainer>
+        </ResponsiveContainer>}
       </div>
     </motion.div>
   );
