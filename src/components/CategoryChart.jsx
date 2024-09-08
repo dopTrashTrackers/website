@@ -33,6 +33,7 @@ const GarbageTypeBarChart = () => {
               contentStyle={{
                 backgroundColor: 'rgb(100, 130, 173)',
                 borderColor: '#4B5563',
+                borderRadius: "0.5rem",
               }}
               itemStyle={{ color: '#000000' }}
             />
@@ -40,6 +41,8 @@ const GarbageTypeBarChart = () => {
               dataKey='frequency'
               barSize={30}
               radius={[5,5, 0, 0]}
+              animationDuration={1000}
+              animationBegin={300}
             >
             
                 {garbageTypeData.map((entry, index) => (
