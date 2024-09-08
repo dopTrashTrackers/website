@@ -36,6 +36,7 @@ const GarbageDetectionChart = () => {
 							contentStyle={{
 								backgroundColor: "rgb(100, 130, 173)",
 								borderColor: "#4B5563",
+								borderRadius: "0.5rem",
 							}}
 							itemStyle={{ color: "#000000" }}
 						/>
@@ -44,6 +45,7 @@ const GarbageDetectionChart = () => {
 							dataKey='detections'
 							stroke='#6366F1'
 							strokeWidth={2}
+							animationBegin={300}
 							dot={{ fill: "#6366F1", strokeWidth: 4, r: 6 }}
 							activeDot={{ r: 8 }}
 						/>
