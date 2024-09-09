@@ -116,7 +116,7 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     
     # Capture video from the webcam
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("https://192.0.0.2:8080")
     
     if not cap.isOpened():
         print("Error: Unable to open webcam.")
