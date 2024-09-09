@@ -77,10 +77,10 @@ def detect_trash(frame):
 
             if class_confidence > CONFIDENCE_THRESHOLD:
                 # Convert the center x, y, width, height to x1, y1, x2, y2 (top-left and bottom-right)
-                x1 = int((x_center - width / 2) * frame.shape[1])
-                y1 = int((y_center - height / 2) * frame.shape[0])
-                x2 = int((x_center + width / 2) * frame.shape[1])
-                y2 = int((y_center + height / 2) * frame.shape[0])
+                x1 = int((x_center - width / 2))
+                y1 = int((y_center - height / 2))
+                x2 = int((x_center + width / 2))
+                y2 = int((y_center + height / 2))
 
                 bboxes.append([x1, y1, x2, y2])
                 confidences.append(float(confidence))
@@ -159,10 +159,25 @@ async def dashboard():
     <html>
         <head>
             <title>Trash Detection</title>
+            <style>
+                #box{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 2rem;
+                }
+                #video-feed{
+                    border-radius: 10px;
+                    box-shadow: 0em 0em 5em #769fcdc5;
+                }
+            </style>
         </head>
         <body>
+            <div id="box">
             <h1>Trash Detection</h1>
             <img id="video-feed" src="" alt="Webcam feed">
+            <div>
             <script>
                 const videoFeed = document.getElementById('video-feed');
                 const ws = new WebSocket('ws://localhost:8000/ws');
