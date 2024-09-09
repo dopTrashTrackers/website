@@ -1,0 +1,11 @@
+#box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+#video-feed{
+    border-radius: 10px;
+    box-shadow: 0em 0em 5em #769fcdc5;
+}
