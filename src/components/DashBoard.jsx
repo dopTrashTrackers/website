@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import GarbageTimeSeriesChart from './TimeChart';
 import GarbageTypeBarChart from './CategoryChart';
-import GarbageDetectionMap from './GarbageDetectionMap';
 import CleanlinessComplianceChart from './CleanlinessComplianceChart';
 import GarbageDetectionTable from './DetectionTimeTable';
 import AlertSystem from './Alert';
-import { use } from 'framer-motion/client';
 
 const DashBoard = () => {
   useEffect(() => {

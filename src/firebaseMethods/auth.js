@@ -5,13 +5,13 @@ import { getDatabase, set, get, child, ref, push } from "firebase/database";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA1tk4TVFZG_58-lYvRaV8LcXvEbGx-H9U",
-    authDomain: "sih2024-559e6.firebaseapp.com",
-    projectId: "sih2024-559e6",
-    storageBucket: "sih2024-559e6.appspot.com",
-    messagingSenderId: "1013042255761",
-    appId: "1:1013042255761:web:bfe4657e7d978efec36c30",
-    databaseURL: "https://sih2024-559e6-default-rtdb.firebaseio.com/",
+    apiKey: import.meta.env.VITE_fireKey ,
+    authDomain: import.meta.env.VITE_fireAuthDomain,
+    projectId: import.meta.env.VITE_fireProjectId,
+    storageBucket: import.meta.env.VITE_fireStorageBucket,
+    messagingSenderId: import.meta.env.VITE_fireMessagingSenderId,
+    appId: import.meta.env.VITE_fireAppID,
+    databaseURL: import.meta.env.VITE_fireDatabaseURL,
 };  
 
 export class AuthService{

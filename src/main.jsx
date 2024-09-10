@@ -5,7 +5,7 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import {Home, Login, Signup, DashBoard, FAQ, Contact, AddPostOffice} from './components'
+import {Home, Login, Signup, DashBoard, AddPostOffice} from './components'
 
 const router = createBrowserRouter([
   {
@@ -31,10 +31,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/:slug",
         element: <DashBoard />
-      },
-      {
-        path: "/faq",
-        element: <FAQ />
       },
       {
         path: "/register",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
 // Example function to simulate your ML model
@@ -23,8 +23,8 @@ const AlertSystem = () => {
   const sendEmail = () => {
     // Prevent form submission behavior if form submission is involved
     emailjs
-      .sendForm('service_9qvtp58', 'template_wqpnjf4', form.current, {
-        publicKey: 'SDDNbHMTZaEETfVR6',
+      .sendForm(import.meta.env.VITE_EServiceID, import.meta.env.VITE_ETemplateId, form.current, {
+        publicKey: import.meta.env.VITE_EPublicKey,
       })
       .then(
         () => {
@@ -51,7 +51,7 @@ const AlertSystem = () => {
           <input type="text" name="user_name" defaultValue="ram" />
 
           <label>Email</label>
-          <input type="email" name="user_email" defaultValue="sihbgp2024@gmail.com" />
+          <input type="email" name="user_email" defaultValue={import.meta.env.VITE_AlertMail} />
 
           <label>Message</label>
           <textarea name="message" defaultValue="test" />
