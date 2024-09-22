@@ -78,7 +78,7 @@
   }
   
   .footer-links a,
-  .footer-contact p {
+  .footer-contact a, .footer-contact p {
     margin-bottom: 10px;
     display: block;
     color: #4c5166;
@@ -86,7 +86,7 @@
   }
   
   .footer-links a:hover,
-  .footer-contact p:hover {
+  .footer-contact a:hover {
     font-weight: 400;
     scale: 0.9;
     /* or 267% */

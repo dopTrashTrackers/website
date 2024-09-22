@@ -18,14 +18,14 @@ const garbageDetectionData = [
 const GarbageDetectionChart = () => {
 	return (
 		<motion.div
-			className=' h-min w-3/6 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
+			className='flex-1 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 pl-0 border border-gray-700'
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 0.5 }}
 			style={{backgroundColor:'#F5EDED'}}
         
 		>
-			<h2 className='text-xl font-semibold text-black mb-4'>Garbage Detection Frequency</h2>
+			<h2 className='text-xl font-semibold text-black mb-4 pl-6'>Garbage Detection Frequency</h2>
 			<div className='h-[360px]'>
 				<ResponsiveContainer width='100%' height='100%'>
 					<LineChart data={garbageDetectionData}>

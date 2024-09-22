@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,23 +9,27 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className='md:hidden flex-1'>
       <div 
-        className="text-2xl p-4 cursor-pointer fixed top-4 left-4 z-10"
+        className="text-2xl w-6 cursor-pointer relative z-10 delay-75"
         onClick={toggleNavbar}
       >
-        ☰
+        {isOpen? "X" : "☰"}
       </div>
-      {isOpen && (
-        <nav className="fixed top-0 left-0 h-full w-64 bg-gray-800 text-white flex flex-col p-4 z-10">
-          <ul className="space-y-4">
-            <li><a href="#home" className="hover:bg-gray-600 p-2 rounded">Home</a></li>
-            <li><a href="#login" className="hover:bg-gray-600 p-2 rounded">Login</a></li>
-            <li><a href="#dashboard" className="hover:bg-gray-600 p-2 rounded">Dashboard</a></li>
-            <li><a href="#faq" className="hover:bg-gray-600 p-2 rounded">FAQ</a></li>
-          </ul>
+      {
+        <nav className={`${isOpen?"visible":"invisible"} ${isOpen?"opacity-1":"opacity-0"} transition-opacity duration-300 ease-in-out
+          fixed top-full left-0 h-max w-64 bg-blue-gray-50 text-gray-700 shadow-lg flex flex-col z-10`}>
+          <Link to='/home' onClick={toggleNavbar} className="hover:bg-blue-200 p-2 px-4">Home</Link>
+          <Link to='/home' className="hover:bg-blue-200 p-2 px-4"
+          onClick={() => {
+            toggleNavbar();
+            const anchor = document.querySelector('#faq');
+            if(anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }}
+          >FAQ</Link>
+          <Link to='/home/register' onClick={toggleNavbar} className="hover:bg-blue-200 p-2 px-4">Register</Link>
         </nav>
-      )}
+      }
     </div>
   );
 };

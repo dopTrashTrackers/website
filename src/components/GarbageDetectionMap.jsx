@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 
 const garbageIcon = new L.Icon({
-  iconUrl: '../../public/litter.png',
+  iconUrl: '../../litter.png',
   iconSize: [40, 40], 
   iconAnchor: [20, 40],
   popupAnchor: [0, -40],
@@ -27,7 +27,7 @@ const garbageDetectionData = [
 const GarbageDetectionMap = () => {
   return (
     <motion.div
-      className=' h-min w-3/4 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
+      className=' h-min w-11/12 md:w-3/4 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}

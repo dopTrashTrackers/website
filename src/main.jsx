@@ -6,42 +6,42 @@ import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import {Home, Login, Signup, DashBoard, AddPostOffice} from './components'
+import AuthLayout from './components/AuthLayout.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <Login />,
+  },
+  {
+    path: '/home',
+    element: 
+    <AuthLayout authentication={true}>
+      <App />
+    </AuthLayout>,
     children: [
-      {
-        path: '/',
-        element: <Login />
-      },
-      {
-        path: '/login',
-        element: <Login />
-      },
       {
         path: '/home',
         element: <Home />
       },
       {
-        path: '/signup',
+        path: '/home/signup',
         element: <Signup />
       },
       {
-        path: "/dashboard/:slug",
+        path: "/home/dashboard/:slug",
         element: <DashBoard />
       },
       {
-        path: "/register",
+        path: "/home/register",
         element: <AddPostOffice/>
       },
       {
-        path: '/addPostOffice',
+        path: '/home/addPostOffice',
         element: <AddPostOffice />
       }
     ]
-  }
+  },
 ])
 
 createRoot(document.getElementById('root')).render(

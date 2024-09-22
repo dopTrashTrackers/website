@@ -15,7 +15,7 @@ const CleanlinessComplianceChart = () => {
   return (
     <motion.div
       ref={ref}
-      className=' h-6/6 w-3/6 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
+      className='md:w-1/2 w-full bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}

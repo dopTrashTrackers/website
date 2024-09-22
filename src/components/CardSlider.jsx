@@ -4,9 +4,9 @@ import "../styles/CardSlider.css"
 
 const CardSlider = () => {
         return (
-          <div id="slider" className="text-center w-3/4 rounded-md">
+          <div id="slider" className="text-center w-11/12 md:w-3/4 rounded-md">
             <div className="mb-[50px]">
-              <h1 className="text-6xl font-serif bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
+              <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-serif bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
                 <i>LiFE practices</i>
               </h1>
             </div>

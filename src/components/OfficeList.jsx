@@ -22,14 +22,22 @@ function OfficeList() {
     },[postOffficeList]);
     
 return (
-    <div className='bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-lg p-6 w-3/4 mt-2 shadow-lg'>
+    <div className='bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-lg p-6 w-11/12 md:w-3/4 mt-2 shadow-lg'>
         <div className='flex gap-2 w-full mb-4'>
             <div className="w-1/3">
                 <input
                     type="text"
                     id="state"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                    className="w-full invisible sm:visible px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                     placeholder="Search by state"
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                />
+                <input
+                    type="text"
+                    id="state"
+                    className="w-full sm:hidden px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                    placeholder="State"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
                 />
@@ -38,8 +46,16 @@ return (
                 <input
                     type="text"
                     id="district"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                    className="w-full invisible sm:visible px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                     placeholder="Search by district"
+                    value={district}
+                    onChange={(e) => setDistrict(e.target.value)}
+                />
+                <input
+                    type="text"
+                    id="district"
+                    className="w-full sm:hidden px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                    placeholder="District"
                     value={district}
                     onChange={(e) => setDistrict(e.target.value)}
                 />
@@ -48,8 +64,16 @@ return (
                 <input
                     type="text"
                     id="pincode"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                    className="w-full invisible sm:visible px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                     placeholder="Search by pin code"
+                    value={pincode}
+                    onChange={(e) => setPincode(e.target.value)}
+                />
+                <input
+                    type="text"
+                    id="pincode"
+                    className="w-full sm:hidden px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                    placeholder="PinCode"
                     value={pincode}
                     onChange={(e) => setPincode(e.target.value)}
                 />
@@ -87,7 +111,7 @@ return (
                                 &&
                                 <tr key={postOffice.key} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700
                                     hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
-                                    onClick={() => navigate(`/dashboard/${postOffice.key}`)}
+                                    onClick={() => navigate(`/home/dashboard/${postOffice.key}`)}
                                 >
                                     <td className="px-6 py-4">{postOffice.name}</td>
                                     <td className="px-6 py-4">{postOffice.pincode}</td>

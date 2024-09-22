@@ -11,8 +11,8 @@ export function AccordionCustomStyles() {
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
  
   return (
-    <div id="faq" className='w-3/4 p-4'>
-      <h2 style={{ fontSize: '2.5rem', fontFamily: 'Arial, sans-serif', fontWeight: 'bold', color: '#61C0BF' }}>
+    <div id="faq" className='w-11/12 md:w-3/4 p-4'>
+      <h2 className="py-1 text-2xl sm:text-3xl md:text-4xl font-bold font-sans bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
         Frequently Asked Questions
       </h2>
       <Accordion open={open === 1} className="mb-2 rounded-lg border border-blue-gray-100 px-4 " style={{backgroundColor:'#BBDED6'}}>
