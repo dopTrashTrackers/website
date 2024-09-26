@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
 
 const garbageDetectionData = [
-  { id: 1, place: "Storage Room", type: "Plastic", time: "2024-09-01T08:00:00Z" },
-  { id: 2, place: "Lobby", type: "Organic", time: "2024-09-01T09:30:00Z" },
-  { id: 3, place: "Entrance", type: "Paper", time: "2024-09-01T10:45:00Z" },
-  { id: 4, place: "Parcell counter", type: "Plastic", time: "2024-09-01T11:00:00Z" },
-  { id: 5, place: "Break Area", type: "Metal", time: "2024-09-01T12:15:00Z" },
-  { id: 6, place: "Outdoor Area", type: "Glass", time: "2024-09-01T13:30:00Z" },
+  { id: 1, place: "Storage Room", type: "Plastic", time: "2024-09-26T08:00:00Z" },
+  { id: 2, place: "Lobby", type: "Organic", time: "2024-09-26T09:30:00Z" },
+  { id: 3, place: "Entrance", type: "Paper", time: "2024-09-26T10:45:00Z" },
+  { id: 4, place: "Parcell counter", type: "Plastic", time: "2024-09-26T11:00:00Z" },
+  { id: 5, place: "Break Area", type: "Metal", time: "2024-09-25T12:15:00Z" },
+  { id: 6, place: "Outdoor Area", type: "Glass", time: "2024-09-25T13:30:00Z" },
   
 ];
 

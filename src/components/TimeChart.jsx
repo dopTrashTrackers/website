@@ -3,15 +3,15 @@ import { motion } from "framer-motion";
 
 // Example garbage detection data
 const garbageDetectionData = [
-	{ date: "2024-01-01", detections: 50 },
-	{ date: "2024-01-02", detections: 75 },
-	{ date: "2024-01-03", detections: 60 },
-    { date: "2024-02-05", detections: 125 },
-    { date: "2024-02-06", detections: 130 },
-   { date: "2024-02-07", detections: 140 },
-   { date: "2024-02-08", detections: 150 },
-   { date: "2024-02-09", detections: 160 },
-   { date: "2024-02-10", detections: 155 },
+	{ date: "2024-09-01", detections: 50 },
+	{ date: "2024-09-03", detections: 75 },
+	{ date: "2024-09-07", detections: 60 },
+    { date: "2024-09-09", detections: 125 },
+    { date: "2024-09-11", detections: 130 },
+   { date: "2024-09-13", detections: 140 },
+   { date: "2024-09-15", detections: 150 },
+   { date: "2024-09-17", detections: 160 },
+   { date: "2024-09-26", detections: 155 },
 	// Add more data here
 ];
 
