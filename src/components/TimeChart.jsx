@@ -11,7 +11,7 @@ const garbageDetectionData = [
    { date: "2024-09-13", detections: 140 },
    { date: "2024-09-15", detections: 150 },
    { date: "2024-09-17", detections: 160 },
-   { date: "2024-09-26", detections: 155 },
+   { date: "2024-09-26", detections: 156 },
 	// Add more data here
 ];
 

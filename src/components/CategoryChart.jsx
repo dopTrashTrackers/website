@@ -1,19 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,Cell } from 'recharts';
 import { motion } from 'framer-motion';
+import authService from '../firebaseMethods/auth';
+import { useParams } from 'react-router-dom';
+import { onValue } from 'firebase/database';
 
 // Example garbage type data
-const COLORS = ["#6366F1", "#8B5CF6", "#EC4899", "#10B981", "#F59E0B"];
-const garbageTypeData = [
-  { type: 'Plastic', frequency: 45 },
-  { type: 'Paper', frequency: 30 },
-  { type: 'Organic', frequency: 25 },
-  { type: 'Metal', frequency: 15 },
-  { type: 'Glass', frequency: 50 },
-  // Add more data as needed
+const COLORS = [
+  "#6366F1", "#8B5CF6", "#EC4899", "#10B981", "#F59E0B",
+  "#EF4444", "#3B82F6", "#F97316", "#22D3EE", "#A3E635",
+  "#D946EF", "#14B8A6", "#F43F5E", "#EAB308", "#4ADE80",
+  "#FB923C", "#60A5FA", "#A78BFA", "#F87171", "#34D399",
+  "#FBBF24", "#C084FC", "#9CA3AF", "#6B7280", "#4B5563",
+  "#1F2937", "#111827", "#9CA3AF", "#6B7280"
 ];
 
 const GarbageTypeBarChart = () => {
+  const { slug } = useParams();
+  const [garbageTypeData, setGarbageTypeData] = useState([]);
+  const [fontSize, setFontSize] = useState('14px');
+
+  useEffect( () => {
+    const dataRef = authService.getRef(`postOffices/${slug}/garbageTypeData`);
+
+    const unsubscribe = onValue(dataRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+      setGarbageTypeData(data);
+    });
+
+    const handleResize = () => {
+      if (window.innerWidth < 600) {
+        setFontSize('8px');
+      } else if (window.innerWidth < 900) {
+        setFontSize('10px');
+      } else {
+        setFontSize('14px');
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      unsubscribe();
+    }
+  },[]);
+
   return (
     <motion.div
       className='flex-1 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 pl-0 border border-gray-700'
@@ -23,11 +57,11 @@ const GarbageTypeBarChart = () => {
       style={{backgroundColor:'#F5EDED'}}
     >
       <h2 className='text-xl font-semibold text-black mb-4 pl-6'>Garbage Type Frequency</h2>
-      <div className='h-[360px]'>
+      <div className='h-[420px]'>
         <ResponsiveContainer width='100%' height='100%'>
           <BarChart data={garbageTypeData}>
             <CartesianGrid strokeDasharray='3 3' stroke='#000000' />
-            <XAxis dataKey='type' stroke='#000000' />
+            <XAxis height={110} dataKey='type' stroke='#000000' tick={{ angle: -45, textAnchor: 'end', fontSize }} interval={0}/>
             <YAxis stroke='#000000' />
             <Tooltip
               contentStyle={{
@@ -39,16 +73,16 @@ const GarbageTypeBarChart = () => {
             />
             <Bar
               dataKey='frequency'
-              barSize={30}
+              barSize={10}
               radius={[5,5, 0, 0]}
               animationDuration={1000}
               animationBegin={300}
             >
             
-                {garbageTypeData.map((entry, index) => (
-				<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-					))}
-			</Bar>
+              {garbageTypeData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Bar>
 
           </BarChart>
         </ResponsiveContainer>
