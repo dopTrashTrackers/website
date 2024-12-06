@@ -12,10 +12,8 @@ const DashBoard = () => {
   return (
     <div id="dashboardTop" className='flex flex-col gap-4 min-h-fit opacity-80 text-black w-full' style={{backgroundColor:'#B4D4FF'}}>
       {/* Top Row */}
-      <div className='flex flex-col md:flex-row gap-4 p-4 mt-5 mb-4 w-full'>
+      <div className='flex flex-col md:flex-row gap-4 p-4 pb-0 mt-5 mb-4 w-full'>
         <GarbageTypeBarChart />
-      </div>
-      <div className='flex flex-col md:flex-row gap-4 p-4 mt-5 mb-4 w-full'>
         <GarbageTimeSeriesChart />
       </div>
 

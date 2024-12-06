@@ -24,7 +24,44 @@ const GarbageTypeBarChart = () => {
     const dataRef = authService.getRef(`postOffices/${slug}/garbageTypeData`);
 
     const unsubscribe = onValue(dataRef, (snapshot) => {
-      const data = snapshot.val();
+      const items = snapshot.val() ? Object.values(snapshot.val()) : [];
+      const categories = {
+        Plastic: [
+          "Clear plastic bottle",
+          "Other plastic bottle",
+          "Plastic bag wrapper",
+          "Other plastic wrapper",
+          "Plastic film",
+          "Single-use carrier bag",
+          "Straw",
+          "Other plastic"
+        ],
+        Metal: ["Bottle cap", "Drink can", "Other can", "Pop tab", "Aluminium foil"],
+        Glass: ["Broken glass", "Glass bottle"],
+        Paper: ["Paper bag", "Paper"],
+        "Food Waste": ["Food waste"],
+        Other: [
+          "Cigarette",
+          "Unlabeled litter",
+          "Food Carton",
+          "Food container",
+          "Cup",
+          "Crisp packet",
+          "Garbage bag",
+          "Lid",
+          "Other Carton",
+          "Other container",
+          "Styrofoam piece"
+        ],
+      };
+      
+      const data = Object.entries(categories).map(([category, types]) => {
+        const frequency = items
+          .filter(item => types.includes(item.type))
+          .reduce((sum, item) => sum + item.frequency, 0);
+        return { type: category, frequency };
+      });
+      
       console.log(data);
       setGarbageTypeData(data);
     });
@@ -50,18 +87,18 @@ const GarbageTypeBarChart = () => {
 
   return (
     <motion.div
-      className='flex-1 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 pl-0 border border-gray-700'
+      className='flex-1 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl pr-6 pt-6 border border-gray-700'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
       style={{backgroundColor:'#F5EDED'}}
     >
       <h2 className='text-xl font-semibold text-black mb-4 pl-6'>Garbage Type Frequency</h2>
-      <div className='h-[420px]'>
+      <div className='h-[360px]'>
         <ResponsiveContainer width='100%' height='100%'>
           <BarChart data={garbageTypeData}>
             <CartesianGrid strokeDasharray='3 3' stroke='#000000' />
-            <XAxis height={110} dataKey='type' stroke='#000000' tick={{ angle: -45, textAnchor: 'end', fontSize }} interval={0}/>
+            <XAxis height={25} dataKey='type' stroke='#000000' tick={{ angle: 0, textAnchor: 'middle', fontSize }} interval={0}/>
             <YAxis stroke='#000000' />
             <Tooltip
               contentStyle={{
@@ -73,7 +110,7 @@ const GarbageTypeBarChart = () => {
             />
             <Bar
               dataKey='frequency'
-              barSize={10}
+              barSize={40}
               radius={[5,5, 0, 0]}
               animationDuration={1000}
               animationBegin={300}
