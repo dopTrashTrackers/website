@@ -102,6 +102,16 @@ export class AuthService{
             return null;
         }
     }
+    getRef(path){
+        try{
+            const reference = ref(this.database, path);
+            return reference;
+        }
+        catch(error){
+            console.error("error :: getRef :: ",error);
+            return null;
+        }
+    }
 }
 const authService = new AuthService()
 export default authService
