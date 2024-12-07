@@ -1,41 +1,30 @@
 import React, { useState, useRef } from 'react';
-import {nodemailer} from 'nodemailer';
 
 const AlertSystem = () => {
-
-  const sendEmail = () => {
-    const email = import.meta.env.VITE_AlertMail;
-    const subject = 'Trash Detected';
-    const body = 'Your office has not cleaned trash for last 1hr. Please abide by the cleanliness norms.';
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-      user: import.meta.env.VITE_SenderMail,
-      pass: import.meta.env.VITE_EmailPassword
-      }
-    });
-
-    const mailOptions = {
-      from: 'yourEmail@gmail.com',
-      to: email,
-      subject: subject,
-      text: body
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-      return console.error('Failed to send email. Error:', error);
-      }
-      console.log('Email sent successfully!', info.response);
-    });
-  };
 
   return (
     <>
       <div className='flex justify-center'>
         <button
-          onClick={()=>sendEmail()}  
+          onClick={async ()=> {
+            const response = await fetch('http://localhost:3000/alert', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: 'sihbgp2024@gmail.com',
+                subject: 'Garbage Alert',
+                body: 'Garbage is overflowing in your area. Please take necessary action.',
+              }),
+            });
+            if(response.status === 200){
+              alert('Alert generated successfully');
+            }
+            else{
+              alert('Error generating alert');
+            }
+          }}  
           className="bg-green-200 text-black w-40 p-2 rounded-lg mb-12 hover:bg-green-700"
         >
           Generate Alert !!
