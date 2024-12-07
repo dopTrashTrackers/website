@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
+import { useParams } from 'react-router-dom';
+import { onValue } from 'firebase/database';
+import authService from '../firebaseMethods/auth';
 
 const garbageDetectionData = [
   { id: 0, place: "Outdoor Area", type: "Food Waste", time: "2024-09-26T06:37:00Z" },
@@ -16,6 +19,23 @@ const garbageDetectionData = [
 const GarbageDetectionTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState(garbageDetectionData);
+  const { slug } = useParams();
+
+  useEffect(() => {
+    const dataRef = authService.getRef(`postOffices/${slug}/detectionTimeTableData`);
+
+    const unsubscribe = onValue(dataRef, (snapshot) => {
+      for (const [key,value] of Object.entries(snapshot.val())) {
+        garbageDetectionData.push({id: key , ...value});
+      }
+      garbageDetectionData.sort((a,b) => new Date(b.time) - new Date(a.time));
+      setFilteredData(garbageDetectionData);
+    });
+
+    return () => {
+      unsubscribe();
+    }
+  }, [slug]);
 
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
@@ -51,9 +71,9 @@ const GarbageDetectionTable = () => {
         </div>
       </div>
 
-      <div className='overflow-x-auto'>
+      <div className='overflow-x-auto max-h-[700px] overflow-y-auto relative'>
         <table className='divide-y divide-gray-700'>
-          <thead>
+          <thead className='sticky top-0' style={{backgroundColor: "rgb(245,237,237)"}}>
             <tr>
               <th className='px-6 py-3 text-left text-md font-medium text-blue-900 uppercase tracking-wider'>
                 Place of Post Office

@@ -6,3 +6,6 @@ button:active{
     transition: all 1s linear;
     scale: 0.8;
 }
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}

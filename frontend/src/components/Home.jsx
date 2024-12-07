@@ -4,6 +4,7 @@ import CardSlider from './CardSlider.jsx'
 import { AccordionCustomStyles } from './Accordion.jsx'
 import Logos from './Logos.jsx'
 import GarbageDetectionMap from './GarbageDetectionMap.jsx'
+import Chat from './Chat.jsx'
 
 
 function Home() {
@@ -15,7 +16,7 @@ function Home() {
       <OfficeList/>
       <GarbageDetectionMap/>
       <AccordionCustomStyles/>
-      
+      <Chat/>
     </div>
     </>
   )
