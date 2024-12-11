@@ -11,6 +11,12 @@ const garbageIcon = new L.Icon({
   iconAnchor: [20, 40],
   popupAnchor: [0, -40],
 });
+const cleanIcon = new L.Icon({
+  iconUrl: '../../cleanOffice.png',
+  iconSize: [40, 40], 
+  iconAnchor: [20, 40],
+  popupAnchor: [0, -40],
+});
 
 const garbageDetectionData = [
   { id: 1, name: 'Post Office 1 - New Delhi', lat: 28.6139, lng: 77.209, detections: 120 },
@@ -44,7 +50,7 @@ const GarbageDetectionMap = () => {
             <Marker
               key={location.id}
               position={[location.lat, location.lng]}
-              icon={garbageIcon}
+              icon={location.detections < 80 ? cleanIcon : garbageIcon}
             >
               <Popup>
                 <div>

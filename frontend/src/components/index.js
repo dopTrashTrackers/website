@@ -6,5 +6,6 @@ import Header from './Header';
 import Footer from './Footer';
 import Contact from './Contact';
 import AddPostOffice from './AddPostoffice';
+import GivePermission from './givePermission';  
 
-export { DashBoard, Home, Login, Signup, Header, Footer, Contact, AddPostOffice };
+export { DashBoard, Home, Login, Signup, Header, Footer, Contact, AddPostOffice, GivePermission };

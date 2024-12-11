@@ -5,6 +5,7 @@ import { AccordionCustomStyles } from './Accordion.jsx'
 import Logos from './Logos.jsx'
 import GarbageDetectionMap from './GarbageDetectionMap.jsx'
 import Chat from './Chat.jsx'
+import Modi from './Modi.jsx'
 
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
     <div className='flex flex-col w-full items-center justify-center min-h-screen gap-10 mb-10'>
       <Logos/>  
       <CardSlider/>
+      <Modi/>
       <OfficeList/>
       <GarbageDetectionMap/>
       <AccordionCustomStyles/>

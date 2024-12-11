@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import authService from '../firebaseMethods/auth.js';
 import { useDispatch } from 'react-redux';
 import { login as storeLogin } from '../store/authSlice.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import "../styles/login.css";
 
 const Login = () => {
@@ -101,6 +101,9 @@ const Login = () => {
                     >{loading && <img width="24" className='spin' height="24" src="../../loading.svg" alt="progress-indicator"/>}
                     {loading==false ? " Log In" : "Loading..."}</button>
                 </form>
+                <div className="signup-link pl-7 -mt-2">
+                    Don't have an account? <Link to="/signup" className='text-green-900'>Sign up</Link>
+                </div>
             </div>
     </div>
     </>

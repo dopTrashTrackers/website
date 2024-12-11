@@ -15,7 +15,7 @@ const AlertSystem = () => {
               body: JSON.stringify({
                 email: 'sihbgp2024@gmail.com',
                 subject: 'Garbage Alert',
-                body: 'Garbage is overflowing in your area. Please take necessary action.',
+                body: 'Garbage detected in the post office premises. Please take immediate action to maintain cleanliness. Plastic: 1 Organic: 2 Food Waste: 5',
               }),
             });
             if(response.status === 200){
@@ -25,9 +25,8 @@ const AlertSystem = () => {
               alert('Error generating alert');
             }
           }}  
-          className="bg-green-200 text-black w-40 p-2 rounded-lg mb-12 hover:bg-green-700"
+          className="w-full p-24 rounded-lg mb-12"
         >
-          Generate Alert !!
         </button>
       </div>
     </>

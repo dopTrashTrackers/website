@@ -26,7 +26,7 @@ export class AuthService{
     }
 
     async createAccount({email, password}){
-        createUserWithEmailAndPassword(this.auth, email, password)
+        return createUserWithEmailAndPassword(this.auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
             return user;
@@ -110,6 +110,99 @@ export class AuthService{
         catch(error){
             console.error("error :: getRef :: ",error);
             return null;
+        }
+    }
+    async setAdminPermission({email, permission}){
+        try{
+            const currentUser = this.auth.currentUser;
+            if(!currentUser){
+                return false;
+            }
+            const superAdminSnapshot = await get(ref(this.database, '/superAdmin'));
+            let isSuperAdmin = false;
+            superAdminSnapshot.forEach((childSnapshot) => {
+                if (childSnapshot.val() === currentUser.uid) {
+                    isSuperAdmin = true;
+                }
+            });
+            if (!isSuperAdmin) {
+                return false;
+            }
+            const usersSnapshot = await get(ref(this.database, 'users'));
+            let uidOfEmail = null;
+            usersSnapshot.forEach((childSnapshot) => {
+                const user = childSnapshot.val();
+                if (user.email === email) {
+                    uidOfEmail = user.uid;
+                }
+            });
+            if(!uidOfEmail){
+                console.log('here');
+                return false;
+            }
+            if(permission === 'admin'){
+                const userRef = push(ref(this.database, '/admin'));
+                set(userRef, uidOfEmail).then(
+                    () => true
+                ).catch(
+                    (error) => {
+                        console.error("error :: setAdminPermission :: ",error);
+                        return false;
+                    }
+                );
+            }
+            else if(permission === 'superAdmin'){
+                const userRef = push(ref(this.database, '/superAdmin'));
+                set(userRef, uidOfEmail).then(
+                    () => true
+                ).catch(
+                    (error) => {
+                        console.error("error :: setAdminPermission :: ",error);
+                        return false;
+                    }
+                );
+            }
+            else{
+                return false;
+            }
+        }
+        catch(error){
+            console.error("error :: setAdminPermission :: ",error);
+            return false;
+        }
+    }
+    async curUserType(){
+        try{
+            const currentUser = this.auth.currentUser;
+            if(!currentUser){
+                return false;
+            }
+            const superAdminSnapshot = await get(ref(this.database, '/superAdmin'));
+            let superAdmin = false;
+            superAdminSnapshot.forEach((childSnapshot) => {
+                if (childSnapshot.val() == currentUser.uid) {
+                    superAdmin = true;
+                }
+            });
+            if(superAdmin){
+                return 'superAdmin';
+            }
+
+            const adminSnapshot = await get(ref(this.database, '/admin'));
+            let admin = false;
+            adminSnapshot.forEach((childSnapshot) => {
+                if (childSnapshot.val() == currentUser.uid) {
+                    admin = true;
+                }
+            });
+            if(admin){
+                return 'admin';
+            }
+            return 'user';
+        }
+        catch(error){
+            console.error("error :: curUserType :: ",error);
+            return false;
         }
     }
 }

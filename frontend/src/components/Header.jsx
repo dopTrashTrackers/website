@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,17 @@ import Nav from './Nav';
 
 function Header() {
   const authStatus = useSelector(state => state.auth.status);
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+  useEffect(() => {
+    authService.curUserType().then((type) => {
+      console.log(type);
+      if(type === 'superAdmin'){
+        setIsSuperAdmin(true);
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }, []);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,9 +47,10 @@ function Header() {
         }}
         >FAQ</Link>
         <Link to='/home/register' className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer">Register</Link>
+        {isSuperAdmin && <Link to='/home/permission' className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer">Add_Admin</Link>}
       </div>
       <Link to='/home' className="flex-1 text-gray-700 flex items-center justify-center md:text-center text-2xl font-semibold cursor-pointer">
-        <img src="../../India2.png" alt="" className='h-10' />
+        <img src="../../India1.png" alt="" className='h-10' />
       </Link>
       <div className="flex flex-1 items-center justify-end w-full">
         { !authStatus && <Link to='/' className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-1 rounded-md focus:outline-none cursor-pointer">Login</Link>}
