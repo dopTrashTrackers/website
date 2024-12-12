@@ -20,9 +20,8 @@ function Chat() {
             console.error('Failed to send message');
             return;
         }
-        else console.log('response: ',response);
-
         const data = await response.json();
+        console.log(data);
         setMessages([...messages, trimmedInput, data.reply]);
     };
     return <>
@@ -48,7 +47,7 @@ function Chat() {
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    className='fixed bottom-16 right-4 w-80 h-96 border border-blue-400 bg-blue-gray-50 
+                    className='fixed bottom-16 right-4 w-96 h-[450px] border border-blue-400 bg-blue-gray-50 
                     rounded-lg shadow-lg shadow-blue-gray-200 overflow-hidden z-10 will-change-auto'
                     initial={{ opacity: 0, x: 100 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -59,11 +58,11 @@ function Chat() {
                     }}
                 >
                     <div className='flex flex-col h-full'>
-                        <div className='flex-1 p-4 overflow-y-auto scrollbar-hidden' id='chat-window'>
+                        <div className='flex flex-col flex-1 p-4 overflow-y-auto scrollbar-hidden' id='chat-window'>
                             {messages.map((message, index) => (
                                 <motion.div 
                                     key={index} 
-                                    className={`mb-2 p-2 rounded-lg shadow ${index % 2 === 0 ? 'bg-blue-100 text-right' : 'bg-white text-left'}`}
+                                    className={`mb-2 p-2 w-4/5 rounded-lg shadow relative ${index % 2 === 0 ? 'bg-blue-100 self-end' : 'bg-white self-start'}`}
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{
@@ -71,7 +70,8 @@ function Chat() {
                                         y: { type: 'spring', stiffness: 300 },
                                     }}
                                 >
-                                    {message}
+                                    <span className={`z-10 absolute top-1/2 transform -translate-y-1/2 ${index % 2 === 0 ? 'left-full -ml-[1px] border-l-[12px] border-l-blue-100' : 'right-full -mr-[1px] border-r-[12px] border-r-white'}`} style={{ borderTop: '8px solid transparent', borderBottom: '8px solid transparent' }}></span>
+                                    <span dangerouslySetInnerHTML={{ __html: message }}></span>
                                 </motion.div>
                             ))}
                         </div>

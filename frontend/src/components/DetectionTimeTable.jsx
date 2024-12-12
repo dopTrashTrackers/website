@@ -25,11 +25,12 @@ const GarbageDetectionTable = () => {
     const dataRef = authService.getRef(`postOffices/${slug}/detectionTimeTableData`);
 
     const unsubscribe = onValue(dataRef, (snapshot) => {
+      const garbageDetectionData1 = garbageDetectionData;
       for (const [key,value] of Object.entries(snapshot.val())) {
-        garbageDetectionData.push({id: key , ...value});
+        garbageDetectionData1.push({id: key , ...value});
       }
-      garbageDetectionData.sort((a,b) => new Date(b.time) - new Date(a.time));
-      setFilteredData(garbageDetectionData);
+      garbageDetectionData1.sort((a,b) => new Date(b.time) - new Date(a.time));
+      setFilteredData(garbageDetectionData1);
     });
 
     return () => {
