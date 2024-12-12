@@ -1,0 +1,99 @@
+/* General container styles */
+.this-app-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  /* Feed container styles */
+  .feed-container {
+    flex: 1; /* Equal space for all sections */
+    min-width: 300px; /* Ensure minimum width */
+    max-height: 400px; /* Limit the maximum height */
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Align header and content vertically */
+    overflow: hidden; /* Prevent overflow outside container */
+  }
+  
+  /* Header styles */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00695c;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    position: sticky; /* Sticky header */
+    top: 0; /* Stick at the top of the feed container */
+    z-index: 1; /* Ensure it stays above content */
+  }
+  
+  /* Link styles in the header */
+  .header a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Scrollable content styles */
+  .feed-container .content {
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 15px;
+    flex-grow: 1; /* Allows content to grow and fill the available space */
+  }
+  
+  /* Post, tweet, and video item styles */
+  .post,
+  .tweet,
+  .video {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Profile picture styles */
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  /* Post and tweet content styles */
+  .post-content,
+  .tweet-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Image and video styles */
+  .post-image,
+  .video iframe {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  /* Tweet specific styles */
+  .tweet {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .tweet-content {
+    margin-left: 10px;
+  }
+  
+  /* Video description styles */
+  .video p {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
