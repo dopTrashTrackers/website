@@ -1,0 +1,36 @@
+.alert-card {
+    width: 300px;
+    height: 150px;
+    margin: auto;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .alert-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .alert-content {
+    text-align: center;
+  }
+  
+  .alert-content h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .alert-content p {
+    margin: 10px 0 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff6347;
+  }
+  
