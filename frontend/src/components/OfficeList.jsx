@@ -5,8 +5,8 @@ import Loader from './Loader';
 import "../styles/global.css";
 
 function OfficeList() {
-    const [state, setState] = useState('');
-    const [district, setDistrict] = useState('');
+    const [postalDivision, setPostalDivision] = useState('');
+    const [postalRegion, setPostalRegion] = useState('');
     const [pincode, setPincode] = useState('');
     const [postOffficeList, setPostOfficeList] = useState({});
     const [sortOrder, setSortOrder] = useState('ascending'); // State for sorting order
@@ -38,8 +38,31 @@ function OfficeList() {
     };
 
     useEffect(() => {
-        console.log("list", postOffficeList);
-    }, [postOffficeList]);
+        authService.getData('postOffices').then((data) => {
+            if (data) {
+                setPostOfficeList(data);
+            }
+        });
+    }, []);
+
+    // Filter and sort post offices
+    const filteredAndSortedPostOffices = Object.keys(postOfficeList)
+        .filter((postOfficeKey) => {
+            const postOffice = postOfficeList[postOfficeKey] || {};
+            const { postal_div = '', postal_reg = '', pincode: officePincode = '' } = postOffice;
+
+            return (
+                (postalDivision === '' || postal_div.toLowerCase().includes(postalDivision.toLowerCase())) &&
+                (postalRegion === '' || postal_reg.toLowerCase().includes(postalRegion.toLowerCase())) &&
+                (pincode === '' || officePincode.toString().includes(pincode))
+            );
+        })
+        .sort((a, b) => {
+            const compliantA = postOfficeList[a]?.compliant || 0;
+            const compliantB = postOfficeList[b]?.compliant || 0;
+
+            return sortOrder === 'ascending' ? compliantA - compliantB : compliantB - compliantA;
+        });
 
     return (
         <div className='bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 rounded-lg p-6 w-11/12 md:w-3/4 mt-2 shadow-lg'>
@@ -47,53 +70,29 @@ function OfficeList() {
                 <div className="w-1/3">
                     <input
                         type="text"
-                        id="state"
-                        className="w-full invisible sm:visible px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                        placeholder="Search by state"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        id="state"
-                        className="w-full sm:hidden px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                        placeholder="State"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
+                        id="postalDivision"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                        placeholder="Search by Postal Division"
+                        value={postalDivision}
+                        onChange={(e) => setPostalDivision(e.target.value)}
                     />
                 </div>
                 <div className="w-1/3">
                     <input
                         type="text"
-                        id="district"
-                        className="w-full invisible sm:visible px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                        placeholder="Search by district"
-                        value={district}
-                        onChange={(e) => setDistrict(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        id="district"
-                        className="w-full sm:hidden px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                        placeholder="District"
-                        value={district}
-                        onChange={(e) => setDistrict(e.target.value)}
+                        id="postalRegion"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                        placeholder="Search by Postal Region"
+                        value={postalRegion}
+                        onChange={(e) => setPostalRegion(e.target.value)}
                     />
                 </div>
                 <div className="w-1/3">
                     <input
                         type="text"
                         id="pincode"
-                        className="w-full invisible sm:visible px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                        placeholder="Search by pin code"
-                        value={pincode}
-                        onChange={(e) => setPincode(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        id="pincode"
-                        className="w-full sm:hidden px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                        placeholder="PinCode"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                        placeholder="Search by Pin Code"
                         value={pincode}
                         onChange={(e) => setPincode(e.target.value)}
                     />
@@ -102,49 +101,40 @@ function OfficeList() {
 
             {/* Sort Button and Dropdown */}
             <div className="flex justify-end mb-4">
-            <button
-    className="sort-button px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-200"
-    onClick={() => handleSortChange(sortOrder === 'ascending' ? 'descending' : 'ascending')}
->
-    Sort by Compliance ({sortOrder === 'ascending' ? 'Worst to Best' : 'Best to Worst'})
-</button>
-
+                <button
+                    className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-200"
+                    onClick={() => handleSortChange(sortOrder === 'ascending' ? 'descending' : 'ascending')}
+                >
+                    Sort by Compliance ({sortOrder === 'ascending' ? 'Worst to Best' : 'Best to Worst'})
+                </button>
             </div>
 
-            <div className='  w-full overflow-y-scroll no-scrollbar relative rounded-lg' style={{maxHeight:"600px"}}>
+            <div className='w-full overflow-y-scroll no-scrollbar relative rounded-lg' style={{ maxHeight: "600px" }}>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
-                    <thead className=" text-xs text-gray-900 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <thead className="text-xs text-gray-900 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">Serial No.</th>
                             <th scope="col" className="px-6 py-3">Name</th>
                             <th scope="col" className="px-6 py-3">Pincode</th>
-                            <th scope="col" className="px-6 py-3">District</th>
-                            <th scope="col" className="px-6 py-3">State</th>
+                            <th scope="col" className="px-6 py-3">Postal Division</th>
+                            <th scope="col" className="px-6 py-3">Postal Region</th>
                             <th scope="col" className="px-6 py-3">Compliance</th>
                         </tr>
                     </thead>
-                    <tbody>            
+                    <tbody>
                         {
-                            sortedPostOffices.map((postOfficeKey, index) => {
-                                const postOffice = postOffficeList[postOfficeKey];
+                            filteredAndSortedPostOffices.map((postOfficeKey, index) => {
+                                const postOffice = postOfficeList[postOfficeKey] || {};
+                                const { postal_div = '', postal_reg = '', pincode = '', address = '', compliant = 0 } = postOffice;
+
                                 return (
-                                    (
-                                        (state === '' && district === '' && pincode === '') ||
-                                        (state && postOffice.state.toLowerCase().includes(state.toLowerCase())) ||
-                                        (district && postOffice.district.toLowerCase().includes(district.toLowerCase())) ||
-                                        (pincode && postOffice.pincode.toLowerCase().includes(pincode.toLowerCase()))
-                                    )
-                                    &&
-                                    <tr key={postOffice.key} className=" officelistcard bg-white border-b dark:bg-gray-800 dark:border-gray-700
-                                        hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
-                                        onClick={() => navigate('/home/dashboard/${postOffice.key}')}
-                                    >
-                                        <td className="px-6 py-4">{index + 1}</td> {/* Serial No. */}
-                                        <td className="px-6 py-4">{postOffice.name}</td>
-                                        <td className="px-6 py-4">{postOffice.pincode}</td>
-                                        <td className="px-6 py-4">{postOffice.district}</td>
-                                        <td className="px-6 py-4">{postOffice.state}</td>
-                                        <td className="px-6 py-4">{postOffice.compliant}</td> {/* Compliance */}
+                                    <tr key={postOfficeKey} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" onClick={() => navigate(`/home/dashboard/${postOfficeKey}`)}>
+                                        <td className="px-6 py-4">{index + 1}</td>
+                                        <td className="px-6 py-4">{address}</td>
+                                        <td className="px-6 py-4">{pincode}</td>
+                                        <td className="px-6 py-4">{postal_div}</td>
+                                        <td className="px-6 py-4">{postal_reg}</td>
+                                        <td className="px-6 py-4">{compliant}</td>
                                     </tr>
                                 );
                             })
@@ -152,12 +142,10 @@ function OfficeList() {
                     </tbody>
                 </table>
 
+
                 <div className="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
                     {
-                        Object.keys(postOffficeList).length === 0 &&
-                        (
-                            <Loader height='50px'/>
-                        )
+                        Object.keys(postOfficeList).length === 0 && <Loader height='50px' />
                     }
                 </div>
             </div>

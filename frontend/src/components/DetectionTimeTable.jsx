@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { useParams } from 'react-router-dom';
-import { onValue } from 'firebase/database';
+import { onValue, remove, update } from 'firebase/database';
 import authService from '../firebaseMethods/auth';
 
 const garbageDetectionData = [
@@ -13,7 +13,6 @@ const garbageDetectionData = [
   { id: 4, place: "Parcell counter", type: "Plastic", time: "2024-09-26T02:00:00Z" },
   { id: 5, place: "Break Area", type: "Metal", time: "2024-09-25T12:15:00Z" },
   { id: 6, place: "Outdoor Area", type: "Glass", time: "2024-09-25T13:30:00Z" },
-  
 ];
 
 const GarbageDetectionTable = () => {
@@ -26,16 +25,16 @@ const GarbageDetectionTable = () => {
 
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const garbageDetectionData1 = garbageDetectionData;
-      for (const [key,value] of Object.entries(snapshot.val())) {
-        garbageDetectionData1.push({id: key , ...value});
+      for (const [key, value] of Object.entries(snapshot.val())) {
+        garbageDetectionData1.push({ id: key, ...value });
       }
-      garbageDetectionData1.sort((a,b) => new Date(b.time) - new Date(a.time));
+      garbageDetectionData1.sort((a, b) => new Date(b.time) - new Date(a.time));
       setFilteredData(garbageDetectionData1);
     });
 
     return () => {
       unsubscribe();
-    }
+    };
   }, [slug]);
 
   const handleSearch = (e) => {
@@ -50,13 +49,36 @@ const GarbageDetectionTable = () => {
     setFilteredData(filtered);
   };
 
+  const handleEdit = (id) => {
+    const newPlace = prompt("Enter new place:");
+    const newType = prompt("Enter new garbage type:");
+    const newTime = prompt("Enter new detection time (YYYY-MM-DDTHH:mm:ssZ):");
+
+    if (newPlace && newType && newTime) {
+      const dataRef = authService.getRef(`postOffices/${slug}/detectionTimeTableData/${id}`);
+      update(dataRef, { place: newPlace, type: newType, time: newTime })
+        .then(() => alert("Record updated successfully!"))
+        .catch((err) => alert("Error updating record: " + err));
+    }
+  };
+
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this record?");
+    if (confirmDelete) {
+      const dataRef = authService.getRef(`postOffices/${slug}/detectionTimeTableData/${id}`);
+      remove(dataRef)
+        .then(() => alert("Record deleted successfully!"))
+        .catch((err) => alert("Error deleting record: " + err));
+    }
+  };
+
   return (
     <motion.div
       className='md:w-1/2 w-full bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-gray-700'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
-       style={{backgroundColor:'#F5EDED'}}
+      style={{ backgroundColor: '#F5EDED' }}
     >
       <div className='flex w-full justify-between items-center mb-6'>
         <h2 className='text-xl font-semibold text-black'>Garbage Detection Records</h2>
@@ -74,7 +96,7 @@ const GarbageDetectionTable = () => {
 
       <div className='overflow-x-auto max-h-[700px] overflow-y-auto relative'>
         <table className='divide-y divide-gray-700'>
-          <thead className='sticky top-0' style={{backgroundColor: "rgb(245,237,237)"}}>
+          <thead className='sticky top-0' style={{ backgroundColor: "rgb(245,237,237)" }}>
             <tr>
               <th className='px-6 py-3 text-left text-md font-medium text-blue-900 uppercase tracking-wider'>
                 Place of Post Office
@@ -111,8 +133,18 @@ const GarbageDetectionTable = () => {
                   </div>
                 </td>
                 <td className='px-6 py-4 text-sm text-black'>
-                  <button className='text-indigo-400 hover:text-indigo-300 mr-2'>Edit</button>
-                  <button className='text-red-400 hover:text-red-300'>Delete</button>
+                  <button
+                    onClick={() => handleEdit(record.id)}
+                    className='text-indigo-400 hover:text-indigo-300 mr-2'
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(record.id)}
+                    className='text-red-400 hover:text-red-300'
+                  >
+                    Delete
+                  </button>
                 </td>
               </motion.tr>
             ))}

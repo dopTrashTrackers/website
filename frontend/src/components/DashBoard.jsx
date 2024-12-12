@@ -4,7 +4,8 @@ import GarbageTypeBarChart from './CategoryChart';
 import CleanlinessComplianceChart from './CleanlinessComplianceChart';
 import GarbageDetectionTable from './DetectionTimeTable';
 import AlertSystem from './Alert';
-
+import Socialmedia from './Socialmedia';
+import Table from './Table';
 const DashBoard = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,6 +23,9 @@ const DashBoard = () => {
         <GarbageDetectionTable />
         <CleanlinessComplianceChart />
       </div>
+     
+      <Table/>
+      <Socialmedia/>
       <AlertSystem/>
     </div>
   );
