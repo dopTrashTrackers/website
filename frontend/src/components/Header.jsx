@@ -9,6 +9,7 @@ import Nav from "./Nav";
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+  const [isUser, setIsUser] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,6 +19,9 @@ function Header() {
       .then((type) => {
         if (type === "superAdmin") {
           setIsSuperAdmin(true);
+        }
+        else if (type === "user") {
+          setIsUser(true);
         }
       })
       .catch((error) => {
@@ -72,6 +76,14 @@ function Header() {
             className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer add-admin-link"
           >
             Add_Admin
+          </Link>
+        )}
+        {isUser && (
+          <Link
+            to="/home/raise-complaint"
+            className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer office-link"
+          >
+            Raise_Complaint
           </Link>
         )}
       </div>

@@ -47,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: '/home/permission',
         element: <GivePermission />
+      },
+      {
+        path: '/home/raise-complaint',
+        element: <DashBoard />
       }
     ]
   },
