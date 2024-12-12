@@ -72,29 +72,28 @@ function NavigationGuide() {
 
   return (
     <>
-    <Joyride
-      steps={steps}
-      run={run}
-      continuous={true}
-      showSkipButton={true}
-      showProgress={true}
-      styles={{
-        options: {
-          primaryColor: "#5e72e4",
-          zIndex: 1000,
-        },
-      }}
-      callback={(data) => {
-        if (data.status === "finished" || data.status === "skipped") {
-          setRun(false);
-        }
-      }}
-    />
-    <div style={{ position: "absolute", top: "20px", left: "50%", transform: "translateX(-50%)", ...cursorStyle }}>
-      <p style={{ fontSize: "16px", fontWeight: "bold", color: "#5e72e4" }}>
-        👉 Click here to navigate!
-      </p>
-    </div>
+      <Joyride
+        steps={steps}
+        run={run}
+        continuous={true}
+        showSkipButton={true}
+        styles={{
+          options: {
+            primaryColor: "#5e72e4",
+            zIndex: 1000,
+          },
+        }}
+        callback={(data) => {
+          if (data.status === "finished" || data.status === "skipped") {
+            setRun(false);
+          }
+        }}
+      />
+      <div style={{ position: "absolute", top: "20px", left: "50%", transform: "translateX(-50%)", ...cursorStyle }}>
+        <p style={{ fontSize: "16px", fontWeight: "bold", color: "#5e72e4" }}>
+          &#128073; Click here to navigate!
+        </p>
+      </div>
     </>
   );
 }

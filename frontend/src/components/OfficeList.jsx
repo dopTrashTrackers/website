@@ -8,7 +8,7 @@ function OfficeList() {
     const [postalDivision, setPostalDivision] = useState('');
     const [postalRegion, setPostalRegion] = useState('');
     const [pincode, setPincode] = useState('');
-    const [postOffficeList, setPostOfficeList] = useState({});
+    const [postOfficeList, setPostOfficeList] = useState({});
     const [sortOrder, setSortOrder] = useState('ascending'); // State for sorting order
     const navigate = useNavigate();
 
@@ -21,9 +21,9 @@ function OfficeList() {
     }, []);
 
     // Sorting function based on compliance score
-    const sortedPostOffices = Object.keys(postOffficeList).sort((a, b) => {
-        const compliantA = postOffficeList[a]?.compliant || 0;
-        const compliantB = postOffficeList[b]?.compliant || 0;
+    const sortedPostOffices = Object.keys(postOfficeList).sort((a, b) => {
+        const compliantA = postOfficeList[a]?.compliant || 0;
+        const compliantB = postOfficeList[b]?.compliant || 0;
 
         if (sortOrder === 'ascending') {
             return compliantA - compliantB;
@@ -108,8 +108,8 @@ function OfficeList() {
                     Sort by Compliance ({sortOrder === 'ascending' ? 'Worst to Best' : 'Best to Worst'})
                 </button>
             </div>
-
             <div className='w-full overflow-y-scroll no-scrollbar relative rounded-lg' style={{ maxHeight: "600px" }}>
+                {postOfficeList ? (
                 <table className="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
                     <thead className="text-xs text-gray-900 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -124,11 +124,13 @@ function OfficeList() {
                     <tbody>
                         {
                             filteredAndSortedPostOffices.map((postOfficeKey, index) => {
+                                const isTopFive = index < 5;
                                 const postOffice = postOfficeList[postOfficeKey] || {};
                                 const { postal_div = '', postal_reg = '', pincode = '', address = '', compliant = 0 } = postOffice;
+                                const rowColor = sortOrder === 'ascending' ? (isTopFive ? 'bg-red-100 hover:bg-red-200' : '') : (isTopFive ? 'bg-green-100 hover:bg-green-200' : '');
 
                                 return (
-                                    <tr key={postOfficeKey} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" onClick={() => navigate(`/home/dashboard/${postOfficeKey}`)}>
+                                    <tr key={postOfficeKey} className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer ${rowColor}`} onClick={() => navigate(`/home/dashboard/${postOfficeKey}`)}>
                                         <td className="px-6 py-4">{index + 1}</td>
                                         <td className="px-6 py-4">{address}</td>
                                         <td className="px-6 py-4">{pincode}</td>
@@ -140,14 +142,9 @@ function OfficeList() {
                             })
                         }
                     </tbody>
-                </table>
-
-
-                <div className="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
-                    {
-                        Object.keys(postOfficeList).length === 0 && <Loader height='50px' />
-                    }
-                </div>
+                </table>) : (
+                <Loader/>
+            )}
             </div>
         </div>
     );

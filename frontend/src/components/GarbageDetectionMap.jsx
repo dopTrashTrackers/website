@@ -19,15 +19,16 @@ const cleanIcon = new L.Icon({
 });
 
 const garbageDetectionData = [
-  { id: 1, name: 'Post Office 1 - New Delhi', lat: 28.6139, lng: 77.209, detections: 120 },
-  { id: 2, name: 'Post Office 2 - Mumbai', lat: 19.076, lng: 72.8777, detections: 75 },
-  { id: 3, name: 'Post Office 3 - Chennai', lat: 13.0827, lng: 80.2707, detections: 60 },
-  { id: 4, name: 'Post Office 4 - Kolkata', lat: 22.5726, lng: 88.3639, detections: 90 },
-  { id: 5, name: 'Post Office 5 - Bangalore', lat: 12.9716, lng: 77.5946, detections: 110 },
-  { id: 6, name: 'Post Office 6 - Hyderabad', lat: 17.3850, lng: 78.4867, detections: 80 },
-  { id: 7, name: 'Post Office 7 - Pune', lat: 18.5204, lng: 73.8567, detections: 65 },
-  { id: 8, name: 'Post Office 8 - Ahmedabad', lat: 23.0225, lng: 72.5714, detections: 95 },
-  { id: 9, name: 'Post Office 9 - Bhagalpur', lat: 25.2425, lng: 86.9842, detections: 70 },
+  { id: 1, name: 'Post Office 1 - Anisabad', lat: 25.5775, lng: 85.0930, detections: 42 },
+  { id: 2, name: 'Post Office 2 - Nasik', lat: 26.1529, lng: 85.9014, detections: 42 },
+  { id: 3, name: 'Post Office 3 - Adapur SO', lat: 26.9253, lng: 84.9420, detections: 45 },
+  { id: 4, name: 'Post Office 4 - Jamshedpur taluk', lat: 22.8341, lng: 86.2191, detections: 58 },
+  { id: 5, name: 'Post Office 5 - Jamalpur', lat: 23.0611, lng: 87.9926, detections: 68 },
+  { id: 6, name: 'Post Office 6 - Ekangersarai taluk, Nalanda', lat: 25.2221, lng: 85.2319, detections: 100 },
+  { id: 7, name: 'Post Office 7 - Baghibazar S.O', lat: 26.4667, lng: 84.4332, detections: 100 },
+  { id: 8, name: 'Post Office 8 - Ranchi', lat: 23.3441, lng: 85.3096, detections: 92 },
+  { id: 9, name: 'Post Office 9 - Barari', lat: 25.5031, lng: 87.3662, detections: 89 },
+  { id: 10, name: 'Post Office 10 - Glaghat taluk', lat: 25.7711, lng: 87.4821, detections: 100 },
 ];
 
 const GarbageDetectionMap = () => {
@@ -50,7 +51,7 @@ const GarbageDetectionMap = () => {
             <Marker
               key={location.id}
               position={[location.lat, location.lng]}
-              icon={location.detections < 80 ? cleanIcon : garbageIcon}
+              icon={location.detections > 70 ? cleanIcon : garbageIcon}
             >
               <Popup>
                 <div>
