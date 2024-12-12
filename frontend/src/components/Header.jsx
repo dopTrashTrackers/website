@@ -1,63 +1,107 @@
-import {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import authService from '../firebaseMethods/auth';
-import { logout } from '../store/authSlice';
-import Nav from './Nav';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import authService from "../firebaseMethods/auth";
+import { logout } from "../store/authSlice";
+import Nav from "./Nav";
 
 function Header() {
-  const authStatus = useSelector(state => state.auth.status);
+  const authStatus = useSelector((state) => state.auth.status);
   const [isSuperAdmin, setIsSuperAdmin] = useState(false);
-  useEffect(() => {
-    authService.curUserType().then((type) => {
-      console.log(type);
-      if(type === 'superAdmin'){
-        setIsSuperAdmin(true);
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-  }, []);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    authService
+      .curUserType()
+      .then((type) => {
+        if (type === "superAdmin") {
+          setIsSuperAdmin(true);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching user type:", error);
+      });
+  }, []);
+
   const logoutHandler = () => {
-    authService.logout().then(() => {
+    authService
+      .logout()
+      .then(() => {
         dispatch(logout());
-    }).then(() => {
         navigate("/");
-    })
-    .catch((error) => {
-        console.error(error);
-    });
-  }
+      })
+      .catch((error) => {
+        console.error("Error during logout:", error);
+      });
+  };
 
   return (
-    <header className="bg-white/30 shadow w-full sticky top-0 z-50 backdrop-blur-xl
-      px-10 py-3 flex flex-1 items-center justify-between gap-2">
+    <header
+      className="bg-white/30 shadow w-full sticky top-0 z-50 backdrop-blur-xl px-10 py-3 flex items-center justify-between gap-2"
+    >
       <Nav />
-      <div className="hidden text-lg text-gray-700  md:flex md:flex-1 md:items-center gap-1">
-        <Link to='/home' className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer">Home</Link>
-        <Link to='/home' className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer"
-        onClick={() => {
-          const anchor = document.querySelector('#faq');
-          if(anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }}
-        >FAQ</Link>
-        <Link to='/home/register' className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer">Register</Link>
-        {isSuperAdmin && <Link to='/home/permission' className="inline-block px-6 py-2 duration-200 hover:bg-blue-200 hover:text-white rounded-full cursor-pointer">Add_Admin</Link>}
+
+      <div className="hidden md:flex md:flex-1 md:items-center gap-4 text-lg text-gray-700 nav-links">
+        <Link
+          to="/home"
+          className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer"
+        >
+          Home
+        </Link>
+        <Link
+          to="/home"
+          className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer faq-link"
+          onClick={() => {
+            const anchor = document.querySelector("#faq");
+            if (anchor) anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+          }}
+        >
+          FAQ
+        </Link>
+        <Link
+          to="/home/register"
+          className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer register-link"
+        >
+          Register
+        </Link>
+        {isSuperAdmin && (
+          <Link
+            to="/home/permission"
+            className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer add-admin-link"
+          >
+            Add_Admin
+          </Link>
+        )}
       </div>
-      <Link to='/home' className="flex-1 text-gray-700 flex items-center justify-center md:text-center text-2xl font-semibold cursor-pointer">
-        <img src="../../India1.png" alt="" className='h-10' />
+
+      <Link
+        to="/home"
+        className="flex-1 text-gray-700 flex items-center justify-center text-2xl font-semibold cursor-pointer header-logo"
+      >
+        <img src="../../India1.png" alt="Website Logo" className="h-10" />
       </Link>
-      <div className="flex flex-1 items-center justify-end w-full">
-        { !authStatus && <Link to='/' className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-1 rounded-md focus:outline-none cursor-pointer">Login</Link>}
-        { authStatus && <button onClick={()=>logoutHandler()} className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-1 rounded-md focus:outline-none cursor-pointer">Logout</button>}
+
+      <div className="flex items-center justify-end w-full">
+        {!authStatus ? (
+          <Link
+            to="/"
+            className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-1 rounded-md focus:outline-none cursor-pointer"
+          >
+            Login
+          </Link>
+        ) : (
+          <button
+            onClick={logoutHandler}
+            className="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-1 rounded-md focus:outline-none cursor-pointer logout-button"
+          >
+            Logout
+          </button>
+        )}
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

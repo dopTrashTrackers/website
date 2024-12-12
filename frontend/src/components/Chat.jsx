@@ -32,7 +32,7 @@ function Chat() {
             transition={{ type: 'spring', stiffness: 300 }}
         >
             <button
-                className='p-4 bg-blue-400 hover:bg-blue-500 text-white rounded-full shadow-lg focus:outline-none'
+                className='chat p-4 bg-blue-400 hover:FaTimesbg-blue-500 text-white rounded-full shadow-lg focus:outline-none'
                 onClick={() => setIsOpen(!isOpen)}
             >
             <motion.div
