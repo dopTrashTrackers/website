@@ -10,6 +10,7 @@ function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const [isSuperAdmin, setIsSuperAdmin] = useState(false);
   const [isUser, setIsUser] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,6 +23,9 @@ function Header() {
         }
         else if (type === "user") {
           setIsUser(true);
+        }
+        else if (type === "admin") {
+          setIsAdmin(true);
         }
       })
       .catch((error) => {
@@ -64,12 +68,12 @@ function Header() {
         >
           FAQ
         </Link>
-        <Link
+        {isAdmin && <Link
           to="/home/register"
           className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer register-link"
         >
           Register
-        </Link>
+        </Link>}
         {isSuperAdmin && (
           <Link
             to="/home/permission"

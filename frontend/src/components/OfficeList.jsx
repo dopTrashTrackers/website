@@ -130,7 +130,7 @@ function OfficeList() {
                                 const rowColor = sortOrder === 'ascending' ? (isTopFive ? 'bg-red-100 hover:bg-red-200' : '') : (isTopFive ? 'bg-green-100 hover:bg-green-200' : '');
 
                                 return (
-                                    <tr key={postOfficeKey} className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer ${rowColor}`} onClick={() => navigate(`/home/dashboard/${postOfficeKey}`)}>
+                                    <tr key={postOfficeKey} className={`${!isTopFive ? 'bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600':''} cursor-pointer ${isTopFive ? rowColor:''}`} onClick={() => navigate(`/home/dashboard/${postOfficeKey}`)}>
                                         <td className="px-6 py-4">{index + 1}</td>
                                         <td className="px-6 py-4">{address}</td>
                                         <td className="px-6 py-4">{pincode}</td>
