@@ -15,7 +15,7 @@ const AlertSystem = () => {
               body: JSON.stringify({
                 email: 'sihbgp2024@gmail.com',
                 subject: 'Garbage Alert',
-                body: 'Garbage detected in the post office premises. Please take immediate action to maintain cleanliness. Plastic: 1 Organic: 2 Food Waste: 5',
+                body: 'Garbage detected in the post office premises. Please take immediate action to maintain cleanliness. Plastic: 1 Organic: 2 Food Waste: 5. Link: https://localhost:5173/home/postform',
                 phone: '+916386909300'
               }),
             });

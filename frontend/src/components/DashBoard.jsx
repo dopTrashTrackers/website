@@ -7,9 +7,11 @@ import GarbageDetectionTable from './DetectionTimeTable';
 import Alertcard from './Alertcard';
 import Socialmedia from './Socialmedia';
 import Table from './Table';
-import AvgResponseTimeCard from './averagerestime';
+import AvgResponseTimeCard from './Averagerestime';
 import PerformaceCard from './PerformaceCard'; 
 import RankCard from './RankCard';
+import Alert from './Alert';
+
 const DashBoard = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -53,6 +55,7 @@ const DashBoard = () => {
 
       <Table />
       <Socialmedia />
+      <Alert />
     </div>
   );
 };

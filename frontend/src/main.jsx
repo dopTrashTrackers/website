@@ -6,7 +6,9 @@ import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import {Home, Login, Signup, DashBoard, AddPostOffice, GivePermission} from './components'
+import PostOfficeForm from './components/PostOfficeForm.jsx'
 import AuthLayout from './components/AuthLayout.jsx'
+import ComplaintForm from './components/ComplaintForm.jsx'
 
 const router = createBrowserRouter([
   {
@@ -50,7 +52,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/home/raise-complaint',
-        element: <DashBoard />
+        element: <ComplaintForm />
+      },
+      {
+        path: '/home/postform',
+        element: <PostOfficeForm />
       }
     ]
   },
