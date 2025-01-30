@@ -19,7 +19,7 @@ function Home() {
       <OfficeList/>
       <GarbageDetectionMap/>
       <AccordionCustomStyles/>
-      <Chat/>
+      {/* <Chat/> */}
     </div>
     </>
   )

@@ -9,12 +9,12 @@ function Chat() {
     const [chatInput, setChatInput] = useState('');
 
     const handleSend = async (trimmedInput) => {
-        const response = await fetch('http://localhost:5000/chat', {
+        const response = await fetch('https://modelapi-pniz.onrender.com/chat', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({ message: trimmedInput }),
+            body: new URLSearchParams({ user_message: trimmedInput }).toString(),
         });
         if (response.status !== 200) {
             console.error('Failed to send message');

@@ -13,15 +13,28 @@ import ComplaintForm from './components/ComplaintForm.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Login />,
+    element: 
+    <AuthLayout authentication={false}>
+      <Login />
+    </AuthLayout>,
   },
   {
     path: '/login',
-    element: <Login />,
+    element: 
+    <AuthLayout authentication={false}>
+      <Login />
+    </AuthLayout>,
   },
   {
     path: '/signup',
-    element: <Signup />
+    element: 
+    <AuthLayout authentication={false}>
+      <Signup />
+    </AuthLayout>,
+  },
+  {
+    path: '/postform',
+    element: <PostOfficeForm />
   },
   {
     path: '/home',
@@ -54,10 +67,6 @@ const router = createBrowserRouter([
         path: '/home/raise-complaint',
         element: <ComplaintForm />
       },
-      {
-        path: '/home/postform',
-        element: <PostOfficeForm />
-      }
     ]
   },
 ])

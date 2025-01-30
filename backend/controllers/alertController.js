@@ -10,7 +10,7 @@ const client = require("twilio")(accountSid, authToken);
 app.use(express.json());
 
 const sendEmail = async (data) => {
-  const { email, subject, body } = data;
+  const { email, subject, html } = data;
 
   // Create the transporter
   const transporter = nodemailer.createTransport({
@@ -26,7 +26,7 @@ const sendEmail = async (data) => {
     from: process.env.SenderMail,
     to: email,
     subject: subject,
-    text: body,
+    html: html,
   };
 
   try {
@@ -59,14 +59,14 @@ const sendSMS = async (data) => {
 
 // Controller to handle email sending
 exports.sendAlert = async (req, res) => {
-  const { email, subject, body, phone } = req.body;
+  const { email, subject, body, html, phone } = req.body;
 
   if (!email || !subject || !body || !phone) {
     return res.status(400).send("Missing required fields: email, subject, phone or body.");
   }
 
   try {
-    const emailSent = await sendEmail({ email, subject, body });
+    const emailSent = await sendEmail({ email, subject, html });
     if (!emailSent) {
       return res.status(500).send("Error sending email");
     }
