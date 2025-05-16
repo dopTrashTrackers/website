@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import authService from "../firebaseMethods/auth";
@@ -44,6 +44,7 @@ function Header() {
         console.error("Error during logout:", error);
       });
   };
+  const {slug} = useParams();
 
   return (
     <header
@@ -68,7 +69,7 @@ function Header() {
         >
           FAQ
         </Link>
-        {isAdmin && <Link
+        {(isAdmin || isSuperAdmin) && <Link
           to="/home/register"
           className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer register-link"
         >
@@ -90,14 +91,23 @@ function Header() {
             Raise_Complaint
           </Link>
         )}
+        {window.location.pathname.startsWith("/home/dashboard/") && (
+          <Link
+            to={`/home/dashboard/${slug}/new-cam`}
+            className="px-6 py-2 rounded-full hover:bg-blue-200 hover:text-white duration-200 cursor-pointer office-link"
+          >
+            New_Camera
+          </Link>
+        )}
       </div>
 
-      <Link
+      {/* <Link
         to="/home"
-        className="flex-1 text-gray-700 flex items-center justify-center text-2xl font-semibold cursor-pointer header-logo"
+        className="flex-1 text-gray-700 flex items-center justify-center text-2xl font-semibold cursor-pointer header-logo h-10"
       >
-        <img src="../../India1.png" alt="Website Logo" className="h-10" />
+
       </Link>
+      <img src="../../India1.png" alt="Website Logo" className="h-10" /> */}
 
       <div className="flex items-center justify-end w-full">
         {!authStatus ? (

@@ -1,17 +1,51 @@
 import React, {useRef} from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { motion, useInView } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { onValue } from "firebase/database";
+import authService from "../firebaseMethods/auth";
 
 
-const cleanlinessData = [
-  { name: 'Compliant', value: 160 },  
-  { name: 'Non-Compliant', value: 40 }, 
+const cleanliness = [
+  { name: 'Compliant', value: 0 },  
+  { name: 'Non-Compliant', value: 0 }, 
 ];
 
 const COLORS = ['#7c3aed', '#db2777'];
 const CleanlinessComplianceChart = () => {
   const ref = useRef(null)
   const inView = useInView(ref)
+  const { slug } = useParams();
+  const [cleanlinessData, setCleanlinessData] = useState(cleanliness);
+
+  useEffect(() => {
+    const compliantRef = authService.getRef(`postOffices/${slug}/compliant`);
+    const nonCompliantRef = authService.getRef(`postOffices/${slug}/non-compliant`);
+
+    const unsubscribe = onValue(compliantRef, (snapshot) => {
+      const data = snapshot.val();
+      setCleanlinessData((prevData) => {
+        const updatedData = [...prevData];
+        updatedData[0].value = data || 0; // Update the compliant value
+        return updatedData;
+      });
+    });
+
+    const unsubscribe2 = onValue(nonCompliantRef, (snapshot) => {
+      const data = snapshot.val();
+      setCleanlinessData((prevData) => {
+        const updatedData = [...prevData];
+        updatedData[1].value = data || 0; // Update the non-compliant value
+        return updatedData;
+      });
+    });
+
+    return () => {
+      unsubscribe();
+      unsubscribe2();
+    };
+  }, [slug]);
   return (
     <motion.div
       ref={ref}

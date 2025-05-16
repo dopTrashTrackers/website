@@ -56,10 +56,13 @@ const PostOfficeForm = () => {
       return;
     }
 
-    const modelApiUrl = "https://your-model-api-endpoint.com/detect"; // Replace with ML API endpoint
+    const modelApiUrl = "https://modelapi-pniz.onrender.com/detect-trash/"; // Replace with ML API endpoint
 
     const formDataToSend = new FormData();
-    formDataToSend.append("image", picture);
+    formDataToSend.append("file", picture);
+    formDataToSend.append("place", "Manual");
+    formDataToSend.append("postoffice_id", postOfficeId);   
+    formDataToSend.append("time", new Date().toISOString().replace(/\.\d{3}Z$/, "Z"));
 
     try {
       setUploading(true);
@@ -91,7 +94,7 @@ const PostOfficeForm = () => {
         }),
       });
 
-      alert(`Thanks for submitting! Status updated to ${status} in Firebase!`);
+      alert(`Thanks for submitting! Status updated to ${status}!`);
     } catch (error) {
       console.error("Error during submission:", error);
       alert("Failed to process the form. Please try again.");

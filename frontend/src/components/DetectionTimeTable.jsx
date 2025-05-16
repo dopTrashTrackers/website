@@ -17,19 +17,24 @@ const garbageDetectionData = [
 
 const GarbageDetectionTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredData, setFilteredData] = useState(garbageDetectionData);
+  const [filteredData, setFilteredData] = useState([]);
   const { slug } = useParams();
 
   useEffect(() => {
     const dataRef = authService.getRef(`postOffices/${slug}/detectionTimeTableData`);
 
     const unsubscribe = onValue(dataRef, (snapshot) => {
-      const garbageDetectionData1 = garbageDetectionData;
-      for (const [key, value] of Object.entries(snapshot.val())) {
-        garbageDetectionData1.push({ id: key, ...value });
+      const data = snapshot.val();
+      if (!data) {
+      setFilteredData([]);
+      return;
       }
-      garbageDetectionData1.sort((a, b) => new Date(b.time) - new Date(a.time));
-      setFilteredData(garbageDetectionData1);
+      const updatedData = Object.entries(data).map(([key, value]) => ({
+      id: key,
+      ...value,
+      }));
+      updatedData.sort((a, b) => new Date(b.time) - new Date(a.time));
+      setFilteredData(updatedData);
     });
 
     return () => {

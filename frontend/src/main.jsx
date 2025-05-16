@@ -9,6 +9,7 @@ import {Home, Login, Signup, DashBoard, AddPostOffice, GivePermission} from './c
 import PostOfficeForm from './components/PostOfficeForm.jsx'
 import AuthLayout from './components/AuthLayout.jsx'
 import ComplaintForm from './components/ComplaintForm.jsx'
+import NewCamera from './components/NewCamera.jsx'
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/home/dashboard/:slug",
         element: <DashBoard />
+      },
+      {
+        path: "/home/dashboard/:slug/new-cam",
+        element: <NewCamera />
       },
       {
         path: "/home/register",
