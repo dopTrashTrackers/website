@@ -40,22 +40,22 @@ const sendEmail = async (data) => {
   }
 };
 
-const sendSMS = async (data) => {
-  const { phone, body } = data;
-  try {
-    const message = await client.messages.create({
-      body: body,
-      messagingServiceSid: process.env.MessagingServiceSid,
-      to: phone
-    });
-    console.log("SMS sent successfully!", message.sid);
-    return true;
-  }
-  catch (error) {
-    console.error("Error occurred:", error.message);
-    return false;
-  }
-};
+// const sendSMS = async (data) => {
+//   const { phone, body } = data;
+//   try {
+//     const message = await client.messages.create({
+//       body: body,
+//       messagingServiceSid: process.env.MessagingServiceSid,
+//       to: phone
+//     });
+//     console.log("SMS sent successfully!", message.sid);
+//     return true;
+//   }
+//   catch (error) {
+//     console.error("Error occurred:", error.message);
+//     return false;
+//   }
+// };
 
 // Controller to handle email sending
 exports.sendAlert = async (req, res) => {
@@ -75,14 +75,14 @@ exports.sendAlert = async (req, res) => {
     return res.status(500).send("Internal server error");
   }
 
-  try {
-    const smsSent = await sendSMS({ phone, body });
-    if (!smsSent) {
-      return res.status(500).send("Error sending SMS");
-    }
-  } catch (error) {
-    console.error("Unexpected error:", error.message);
-    return res.status(500).send("Internal server error");
-  }
+  // try {
+  //   const smsSent = await sendSMS({ phone, body });
+  //   if (!smsSent) {
+  //     return res.status(500).send("Error sending SMS");
+  //   }
+  // } catch (error) {
+  //   console.error("Unexpected error:", error.message);
+  //   return res.status(500).send("Internal server error");
+  // }
   return res.status(200).send("Alert sent successfully!");
 };
